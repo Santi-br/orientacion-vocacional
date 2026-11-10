@@ -1,0 +1,6 @@
+:HL["/orientacion-vocacional/_next/static/chunks/0q9mj34nowgrk.css","style"]
+:HC["/",""]
+3:[["children",{"s":"__PAGE__","h":160}]]
+2:[["children",{"s":"informe","h":96,"c":"$Q3"}]]
+1:[["children",{"s":"explorar","h":96,"c":"$Q2"}]]
+0:{"b":"xKihJk1JxnZbFw5nMjH01","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
