@@ -17,7 +17,7 @@ import { buildProfile, topFacets, type Profile } from "./profile";
 import { OPENING_SEQUENCE, QUESTION_BANK } from "./question-bank";
 import type { Item, Onboarding, Requirement, ResponseRecord } from "./types";
 
-export const LIMITS = { min: 18, max: 40, maxGenerated: 8, requiredOpen: 2, hobbyProbes: 2 };
+export const LIMITS = { min: 18, max: 40, maxGenerated: 6, requiredOpen: 2, hobbyProbes: 2 };
 
 export type EngineOptions = { allowOpen: boolean; canGenerate: boolean };
 
@@ -138,7 +138,8 @@ export function nextStep(
   if (!best) return { step: { type: "done", reason: "sin ítems disponibles" }, profile };
 
   // 4 · Punto de control: la IA decide (elige del banco o formula una pregunta nueva).
-  const checkpoint = n >= 4 && (lastWasText || n % 3 === 0);
+  // Cada 4 respuestas o después de una abierta (cuidando la cuota gratuita de la IA).
+  const checkpoint = n >= 4 && (lastWasText || n % 4 === 0);
   if (opts.canGenerate && checkpoint && generatedCount < LIMITS.maxGenerated) {
     return {
       step: { type: "plan", fallback: best, candidates: scored.slice(0, 18), focus: topInterests, gaps },

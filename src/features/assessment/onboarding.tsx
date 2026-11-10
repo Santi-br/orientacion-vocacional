@@ -112,7 +112,7 @@ export function Onboarding() {
                 <span className="block text-[15.5px] font-semibold">Usar IA para analizar mis respuestas</span>
                 <span className="mt-1 block text-[14px] leading-relaxed text-[var(--text-muted)]">
                   La IA adapta las preguntas a lo que vas contando y arma tus recomendaciones eligiendo solo entre carreras
-                  reales. Tus respuestas se envían a OpenAI sin tu edad, tu zona ni nada que te identifique, solo para este
+                  reales. Tus respuestas se envían a un servicio de IA (Groq) sin tu edad, tu zona ni nada que te identifique, solo para este
                   análisis y nunca para publicidad. Si no lo activás, el test funciona igual con reglas fijas.
                 </span>
               </span>

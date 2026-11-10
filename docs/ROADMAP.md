@@ -12,15 +12,16 @@ Actualizado el 10/11/2026 con las decisiones del equipo (ver `DECISIONS.md`, D10
 | 2 | Sistema de diseño y experiencia visual | ✅ Base hecha (tokens, horizonte, vidrio, tipografía). Pendiente: fotografía cinematográfica propia. |
 | 3 | Metodología exploratoria del test | ✅ v0.2.0 asistida por IA. **Siguiente:** correr 10–15 evaluaciones internas con clave real y ajustar prompts. |
 | 4 | Motor de preguntas adaptativas | ✅ Reglas + planificador con IA (elige del banco o genera), pasatiempo vs. vocación, tensiones. |
-| 5 | Catálogo académico verificado | 🟡 Primera tanda: 9 de 11 instituciones con oferta cargada (365 ofertas, 248 carreras). **Siguiente:** UNSAM y UNLaM (manual), UTN.BA completa, datos por carrera (título, duración, modalidad, ingreso). |
+| 5 | Catálogo académico verificado | ✅ Primera tanda completa: las 11 instituciones (498 ofertas, 311 carreras). **Siguiente:** datos por carrera (título, duración, modalidad, ingreso; UNLaM ya trae duración y modalidad) y segunda tanda de instituciones. |
 | 6 | Motor de recomendaciones | ✅ IA sobre catálogo verificado, con respaldo por reglas. **Siguiente:** compatibilidad práctica completa cuando haya sedes y modalidad por carrera. |
 | 7 | Informe personalizado | ✅ Web + PDF por impresión. **Siguiente:** ficha de carrera, comparador, PDF generado en servidor. |
 | 8 | Registro, historial y seguimiento | ⏳ Esquema listo (cuentas, guardado, borrado de datos). Falta la UI: Supabase Auth, Mi recorrido, favoritos. |
 
 ### Antes de las pruebas controladas (20–30 estudiantes)
 
-- Clave de OpenAI y 10–15 corridas internas para calibrar.
+- Crear la cuenta gratis de Groq (con retención cero) y hacer 10–15 corridas internas para calibrar.
 - Catálogo: completar al menos título y duración de las carreras que más aparecen.
+- Cuota gratuita de IA: alcanza para ~15–25 evaluaciones completas por día (ver `AI_ARCHITECTURE.md`); organizar las pruebas en tandas.
 - Encuesta breve al final del informe (identificación, descubrimiento, utilidad, confianza).
 - Métricas: finalización, tiempo, abandono por pregunta.
 - Rate limiting en `/api/assessment/*`.
@@ -36,7 +37,7 @@ Actualizado el 10/11/2026 con las decisiones del equipo (ver `DECISIONS.md`, D10
 - Intervención de responsables parentales cuando corresponda.
 - Protección de datos de menores.
 - Uso de inteligencia artificial.
-- Transferencias internacionales de datos (OpenAI, Supabase, Vercel).
+- Transferencias internacionales de datos (Groq, Supabase, Vercel).
 - Política de privacidad y términos y condiciones.
 - Derechos de acceso, rectificación y eliminación.
 
@@ -57,8 +58,8 @@ Revisión de la metodología por un psicólogo especializado en orientación voc
 | Calidad de las preguntas generadas | Medio | Validación estricta, tope de 8, respaldo del banco; revisar transcripts del piloto |
 | Sesgos (género, nivel socioeconómico) | Medio | Contexto nunca descarta; prompts sin estereotipos; métricas por segmento en el piloto |
 | Latencia del informe (3 llamadas, una con razonamiento) | Medio | Pantalla de análisis por etapas; modelo rápido para tareas simples; medir y ajustar esfuerzo |
-| Costo de IA | Bajo | ~US$0,10–0,20 por evaluación (estimado); rate limiting |
-| Sitios oficiales que bloquean el relevamiento automático | Medio | Relevamiento manual (UNSAM, UNLaM) |
+| Cuota gratuita de IA agotada | Medio | Tres modelos con cuotas separadas, reintento ante límite por minuto, respaldo por reglas si se agota; pruebas en tandas |
+| Sitios oficiales que bloquean el relevamiento automático | Medio | Consultarlos con un navegador real (así se cargaron UNSAM y UNLaM) |
 | Catálogo sesgado a las instituciones cargadas | Medio | Segunda tanda de 10 instituciones; mostrar qué falta |
 
 ## Decisiones abiertas (te consulto cuando lleguemos)

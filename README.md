@@ -6,7 +6,7 @@ Nombre provisorio. Exploración y orientación vocacional **asistida por IA** pa
 
 ```bash
 npm install
-cp .env.example .env.local   # poné OPENAI_API_KEY para activar la IA (sin clave funciona con reglas)
+cp .env.example .env.local   # poné AI_API_KEY (Groq, gratis) para activar la IA; sin clave funciona con reglas
 npm run dev                  # http://localhost:3000
 ```
 
@@ -20,8 +20,8 @@ npm run catalog:sql    # regenera supabase/seed/catalog.sql desde data/catalog
 ## Qué hay
 
 - Landing, onboarding con consentimiento, test adaptativo (reglas + IA), informe con carreras reales y PDF.
-- IA en cuatro módulos (perfil, preguntas, recomendaciones, informe) sobre OpenAI, con respaldo por reglas.
-- Catálogo verificado: 11 instituciones prioritarias, 365 ofertas con fuente oficial y fecha (UNSAM y UNLaM pendientes).
+- IA en cuatro módulos (perfil, preguntas, recomendaciones, informe) con Groq (plan gratis, costo cero), con respaldo por reglas.
+- Catálogo verificado: las 11 instituciones prioritarias, 498 ofertas con fuente oficial y fecha.
 - Supabase: esquema con RLS, borrado de datos y trazabilidad de modelos y prompts.
 
 ## Documentación

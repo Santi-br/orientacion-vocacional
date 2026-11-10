@@ -18,7 +18,7 @@ Las facetas no son etiquetas: una persona puede puntuar alto en muchas. Sirven c
 | Profundización | Ítems que solo aparecen cuando un interés supera un umbral (p. ej. tecnología ≥ 0,35). |
 | Pasatiempo o vocación | Para los dos intereses más fuertes: "¿lo disfrutás como pasatiempo o te imaginás trabajando de eso?". La respuesta ajusta el peso vocacional de ese interés. |
 | Tensiones | Si una faceta tiene evidencia fuerte a favor y en contra, se buscan ítems que la aclaren. |
-| **IA (planificador)** | Cada 3 respuestas, y después de cada abierta, decide si conviene una pregunta del banco o **formular una nueva** (opción única, escenario, escala o abierta) para profundizar, aclarar una contradicción o explorar un interés no considerado. |
+| **IA (planificador)** | Cada 4 respuestas, y después de cada abierta, decide si conviene una pregunta del banco o **formular una nueva** (opción única, escenario, escala o abierta) para profundizar, aclarar una contradicción o explorar un interés no considerado. |
 | **IA (análisis de abiertas)** | Convierte texto libre en señales sobre facetas, temas y pistas de pasatiempo. |
 
 **Duración variable.** El test termina cuando hay al menos 18 respuestas, todas las dimensiones alcanzaron su cobertura mínima, se profundizó en los intereses principales, se preguntó por pasatiempo o vocación, no quedan tensiones aclarables y (con IA) hay al menos 2 respuestas abiertas. Tope: 40.

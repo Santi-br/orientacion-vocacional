@@ -32,7 +32,7 @@ export function inferLevel(officialName: string): ProgramLevel {
   if (/programa conjunto/.test(n)) return "programa_conjunto";
   if (/^profesor/.test(n)) return "profesorado";
   if (/^tecnicatura/.test(n)) return "tecnicatura";
-  if (/^analista|^carrera corta|^critico universitario/.test(n)) return "pregrado";
+  if (/^analista|^carrera corta|^critico universitario|^martillero|^locutor|^agente de propaganda/.test(n)) return "pregrado";
   return "grado";
 }
 
@@ -51,7 +51,7 @@ const RULES: [RegExp, string[]][] = [
   [/ambiental|tecnologias sustentables|paisaje|proteccion civil|atmosfera|oceanograficas|geologic/, ["ambiente"]],
   // Ciencias
   [/biologic|bioinformatica|biotecnologia|paleontologia|bioterios|biologia/, ["biologia_biotec"]],
-  [/matematica|fisica|quimica|actuario|ciencias de la computacion/, ["exactas"]],
+  [/matematica|(?<!educacion )fisica|quimica|actuario|ciencias de la computacion/, ["exactas"]],
   // Salud
   [/^medicina$/, ["medicina"]],
   [/enfermeria/, ["enfermeria"]],
@@ -86,6 +86,24 @@ const RULES: [RegExp, string[]][] = [
   [/geografia/, ["sociales", "ambiente"]],
   [/educacion|trayectorias educativas|profesorado|profesor/, ["educacion"]],
   [/traductorado|lengua inglesa|idioma/, ["idiomas"]],
+  // Agregadas con UNSAM / UNLaM / UTN.BA
+  [/odontologia|ortesis|rehabilitacion visual|acompanamiento terapeutico|anatomia patologica|propaganda medica|diagnostico por imagenes|fisica medica|biomedica/, ["salud_profesiones"]],
+  [/psicopedagogia/, ["psicologia", "educacion"]],
+  [/educacion fisica/, ["kinesiologia_deporte", "educacion"]],
+  [/locutor|ceremonial|produccion de contenidos/, ["comunicacion"]],
+  [/administracion y gestion empresarial|martillero|seguros|tributaria|comercio electronico|gestion universitaria|relaciones laborales/, ["administracion"]],
+  [/guion|animacion|cine documental|espacios virtuales/, ["audiovisual"]],
+  [/animacion|practicas artisticas|conservacion y restauracion/, ["artes_visuales"]],
+  [/transporte|ferroviaria|ingenieria textil/, ["ing_industrial"]],
+  [/sistemas espaciales|energia|nuclear|materiales|biomedica/, ["ing_electromecanica"]],
+  [/nuclear|materiales/, ["ing_quimica_alimentos"]],
+  [/energias renovables|energia$/, ["ambiente"]],
+  [/laboratorio|agrobiotecnologia/, ["biologia_biotec"]],
+  [/agrobiotecnologia/, ["agro_veterinaria"]],
+  [/desarrollo de software|programacion|redes informaticas/, ["sistemas"]],
+  [/politicas publicas/, ["politica_ri"]],
+  [/antropolog/, ["sociales"]],
+  [/conservacion y restauracion del patrimonio/, ["humanidades"]],
   [/turismo|hoteleria|hospitality|hospitalidad|eventos/, ["turismo"]],
   [/gastronomia/, ["gastronomia"]],
 ];

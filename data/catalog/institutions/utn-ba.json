@@ -8,20 +8,25 @@
   "status": "parcial",
   "verifiedAt": "2026-11-10",
   "notes": [
-    "El sitio frba.utn.edu.ar no respondió durante la verificación del 10/11/2026.",
-    "Las ingenierías se tomaron de la tabla oficial de carreras acreditadas por CONEAU publicada por UTN (rectorado). La tabla nombra la carrera abreviada (p. ej. 'Civil'); el nombre completo se reconstruyó como 'Ingeniería …' y debe confirmarse en frba.utn.edu.ar.",
-    "Ingeniería Naval figura como 'INGRESA' (sin resolución de acreditación).",
-    "Puede haber más oferta (licenciaturas, tecnicaturas) no incluida en esa tabla: pendiente.",
-    "Sedes, duración, títulos, modalidad e ingreso: pendientes."
+    "frba.utn.edu.ar/carreras-de-grado indica 'nueve carreras de grado' y lista los departamentos; el nombre de cada carrera se toma del nombre de su departamento (Ciencias Básicas no es una carrera).",
+    "Coinciden con la tabla oficial de acreditaciones CONEAU de UTN, que además registra Ingeniería Naval como 'INGRESA' (sin resolución de acreditación). Textil no figura en esa tabla.",
+    "La página de sedes dice 'tres sedes' pero describe dos (Campus y Medrano).",
+    "Las carreras cortas y licenciaturas de extensión (sceu.frba.utn.edu.ar) dieron 404 el 10/11/2026: pendientes.",
+    "Sede por carrera, duración, títulos, modalidad e ingreso: pendientes."
   ],
-  "campuses": [],
+  "campuses": [
+    { "name": "Campus", "address": "Mozart 2300, Villa Soldati, CABA", "zone": "caba", "role": "sede", "source": "https://frba.utn.edu.ar/sedes/" },
+    { "name": "Sede Medrano", "address": "Medrano 951, Almagro, CABA", "zone": "caba", "role": "sede", "source": "https://frba.utn.edu.ar/sedes/" }
+  ],
   "units": [
-    { "name": "Facultad Regional Buenos Aires", "kind": "facultad_regional",
-      "source": "https://www2.utn.edu.ar/images/UVYT2026/AUDITORIA/Tabla-de-carreras-acreditadas-CONEAU.pdf",
-      "programs": [
-        "Ingeniería Civil", "Ingeniería Electrónica", "Ingeniería en Energía Eléctrica",
-        "Ingeniería en Sistemas de Información", "Ingeniería Industrial", "Ingeniería Mecánica",
-        "Ingeniería Naval", "Ingeniería Química"
-      ] }
+    { "name": "Departamento de Ingeniería Civil", "kind": "departamento", "source": "https://frba.utn.edu.ar/carreras-de-grado/", "programs": ["Ingeniería Civil"] },
+    { "name": "Departamento de Ingeniería en Energía Eléctrica", "kind": "departamento", "source": "https://frba.utn.edu.ar/carreras-de-grado/", "programs": ["Ingeniería en Energía Eléctrica"] },
+    { "name": "Departamento de Ingeniería Electrónica", "kind": "departamento", "source": "https://frba.utn.edu.ar/carreras-de-grado/", "programs": ["Ingeniería Electrónica"] },
+    { "name": "Departamento de Ingeniería Industrial", "kind": "departamento", "source": "https://frba.utn.edu.ar/carreras-de-grado/", "programs": ["Ingeniería Industrial"] },
+    { "name": "Departamento de Ingeniería Mecánica", "kind": "departamento", "source": "https://frba.utn.edu.ar/carreras-de-grado/", "programs": ["Ingeniería Mecánica"] },
+    { "name": "Departamento de Ingeniería Naval", "kind": "departamento", "source": "https://frba.utn.edu.ar/carreras-de-grado/", "programs": ["Ingeniería Naval"] },
+    { "name": "Departamento de Ingeniería Química", "kind": "departamento", "source": "https://frba.utn.edu.ar/carreras-de-grado/", "programs": ["Ingeniería Química"] },
+    { "name": "Departamento de Ingeniería en Sistemas de Información", "kind": "departamento", "source": "https://frba.utn.edu.ar/carreras-de-grado/", "programs": ["Ingeniería en Sistemas de Información"] },
+    { "name": "Departamento de Ingeniería Textil", "kind": "departamento", "source": "https://frba.utn.edu.ar/carreras-de-grado/", "programs": ["Ingeniería Textil"] }
   ]
 }

@@ -52,6 +52,6 @@ Cualitativos, nunca porcentajes. El significado se muestra en el informe:
 
 ## Límites actuales
 
-- Las carreras de UNSAM y UNLaM todavía no están cargadas (ver `ACADEMIC_CATALOG.md`), así que no pueden recomendarse.
+- Solo se recomiendan carreras de las 11 instituciones cargadas; la segunda tanda (UCA, Austral, UNQ, UNGS, etc.) todavía no está.
 - La compatibilidad práctica es parcial: faltan sedes por carrera, modalidad, duración y aranceles.
 - Los perfiles de los campos de estudio son criterios de trabajo del equipo, no parámetros validados.

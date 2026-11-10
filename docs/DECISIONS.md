@@ -4,7 +4,7 @@
 
 **D10 · La metodología se desarrolla con IA, sin especialistas externos por ahora.** La IA analiza respuestas, identifica patrones, profundiza intereses y recomienda carreras. El producto se presenta como herramienta de exploración y orientación vocacional asistida por IA: no es un test psicométrico validado, ni un diagnóstico, ni reemplaza la orientación profesional. Un psicólogo especializado podría sumarse después; no bloquea el MVP. *Reemplaza la exigencia anterior de revisión profesional.*
 
-**D11 · OpenAI API como proveedor de IA.** Toda la comunicación desde el backend. Modelos elegidos consultando la documentación oficial el 10/11/2026: `gpt-6.1-sol` (razonamiento: perfil y recomendaciones) y `gpt-6-luna` (rápido: abiertas, preguntas, textos). Configurables por variables de entorno; la lógica no depende de un modelo. Detalle en `AI_ARCHITECTURE.md`.
+**D11 · IA a costo cero: Groq (plan gratis).** *(Reemplaza la elección de OpenAI, que no tiene plan gratis.)* Modelos abiertos en Groq: `openai/gpt-oss-120b` (perfil y recomendaciones), `openai/gpt-oss-20b` (respuestas abiertas y textos) y `qwen/qwen3.8-27b` (preguntas adaptativas); repartir tareas entre modelos aprovecha cuotas gratuitas separadas. Se descartó el plan gratis de Gemini porque usa el contenido para mejorar los productos de Google, inaceptable con datos de menores. El proveedor es configurable (`AI_PROVIDER=groq|openai`): pasar a un plan pago no exige tocar código. Detalle en `AI_ARCHITECTURE.md`.
 
 **D12 · Arquitectura de cuatro módulos de IA** (A analizador de perfil, B preguntas adaptativas, C recomendaciones, D informe) con salidas estructuradas estrictas y respaldo determinístico en cada uno.
 
@@ -34,10 +34,12 @@
 
 **D8 · Fuentes tipográficas autoalojadas.**
 
-**D9 · Stack:** Next.js 16, TypeScript, Tailwind 4, Supabase/PostgreSQL, Zod 4, OpenAI SDK (Responses API), Vercel.
+**D9 · Stack:** Next.js 16, TypeScript, Tailwind 4, Supabase/PostgreSQL, Zod 4, SDK de OpenAI como cliente de la API compatible de Groq (Chat Completions + json_schema estricto), Vercel.
 
 **D17 · El catálogo vive en JSON versionado en git durante el MVP.** Se revisa en diffs, cada dato con URL y fecha, y se carga a la base con `npm run catalog:sql`. Cuando exista el panel de administración, la base pasa a ser la fuente de verdad.
 
+**D20 · Sitios que bloquean consultas automáticas se relevan con un navegador real** (UNSAM, UNLaM, UTN.BA), siempre desde la página oficial.
+
 **D18 · Clasificación editorial explícita.** El tipo de formación, los campos de estudio y la agrupación en carreras se derivan del nombre oficial con reglas (`classify.ts`) y se documentan como editoriales, no como datos de la institución. Los ciclos de complementación se excluyen de las recomendaciones.
 
-**D19 · `store: false` en OpenAI** y nada identificable en los prompts (sin edad, año ni zona).
+**D19 · Nada identificable en los prompts** (sin edad, año ni zona) y retención cero activada en el proveedor.

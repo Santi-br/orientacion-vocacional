@@ -7,7 +7,7 @@
 | Dato | Dónde vive | ¿Sale a terceros? |
 |---|---|---|
 | Rango de edad, año del secundario, zona aproximada | Navegador (visitante) · `users`/`assessments` (con cuenta) | No |
-| Respuestas del test | Navegador (visitante) · `responses` (con cuenta) | A OpenAI, solo con consentimiento, sin datos identificatorios |
+| Respuestas del test | Navegador (visitante) · `responses` (con cuenta) | Al proveedor de IA (Groq), solo con consentimiento, sin datos identificatorios |
 | Perfil y recomendaciones | Navegador · `profiles`, `recommendations` (con cuenta) | No |
 | Mail (solo si crea cuenta, hito 8) | `auth.users` de Supabase | No |
 
@@ -16,8 +16,9 @@ No se piden nombre, DNI, fecha de nacimiento ni domicilio.
 ## Implementado
 
 - **Visitantes sin persistencia.** Estado en `sessionStorage`; se borra al cerrar la pestaña. El servidor procesa cada paso y no guarda nada.
-- **IA con consentimiento.** Casilla en el onboarding (activada por defecto, explicada). Sin ella, no hay ninguna llamada a OpenAI y el test usa reglas.
-- **Lo mínimo hacia OpenAI.** Solo preguntas y respuestas; nunca edad, año, zona ni identificadores. `store: false`.
+- **IA con consentimiento.** Casilla en el onboarding (activada por defecto, explicada). Sin ella, no hay ninguna llamada a la IA y el test usa reglas.
+- **Lo mínimo hacia la IA.** Solo preguntas y respuestas; nunca edad, año, zona ni identificadores.
+- **Proveedor gratis elegido por privacidad.** Groq no retiene por defecto los datos de inferencia y permite activar retención cero (Zero Data Retention) en *Data Controls*: **activarla al crear la cuenta**. Se descartó el plan gratis de Gemini porque usa el contenido para mejorar los productos de Google.
 - **Respuestas como datos** en los prompts (defensa contra inyección); salidas validadas.
 - **Secretos solo en el servidor.** `server-only` impide importar esos módulos desde el cliente; no hay variables `NEXT_PUBLIC_` con claves.
 - **RLS en todas las tablas** (probado contra Postgres 16): cada estudiante ve solo lo suyo; no puede asignarse roles; el catálogo solo lo editan editores y administradores; el público ve solo lo verificado.
@@ -33,8 +34,8 @@ No se piden nombre, DNI, fecha de nacimiento ni domicilio.
 - Rate limiting de `/api/assessment/*`.
 - Con persistencia: recalcular en servidor las señales de respuestas abiertas en vez de confiar en las que envía el cliente.
 - Analytics sin identificadores personales.
-- Revisar condiciones de OpenAI (retención, entrenamiento, región) y documentarlas.
+- Confirmar en la cuenta de Groq que la retención cero quedó activa y documentar la región de procesamiento.
 
 ## Para la revisión legal (antes del lanzamiento público)
 
-Ley 25.326 y normativa complementaria · consentimiento según edad · intervención de responsables parentales · datos de menores · uso de IA · transferencias internacionales (OpenAI, Supabase, Vercel) · política de privacidad · términos y condiciones · derechos de acceso, rectificación y eliminación.
+Ley 25.326 y normativa complementaria · consentimiento según edad · intervención de responsables parentales · datos de menores · uso de IA · transferencias internacionales (Groq, Supabase, Vercel) · política de privacidad · términos y condiciones · derechos de acceso, rectificación y eliminación.

@@ -22,7 +22,7 @@ Principio rector: **la IA es el núcleo (interpreta, pregunta, recomienda y expl
                      │   profundización, cierre       │
                      │   + IA en puntos de control    │
                      │  ┌─────────────────────────────▼─────────────┐
-                     │  │ server/ai  (OpenAI Responses API, strict)  │
+                     │  │ server/ai  (Groq gratis · JSON estricto)   │
                      │  │ A perfil · B preguntas · C carreras · D informe
                      │  └─────────────────────────────▲─────────────┘
                      │  candidatas + datos institucionales │
@@ -67,7 +67,7 @@ src/
     catalog/               Catálogo verificado (carga + clasificación editorial) y campos de estudio
     report/                Tipos del informe, resumen de respuestas, informe base
   server/                  Solo servidor ("server-only")
-    ai/                    llm (OpenAI) · prompts versionados · A · B · C · D · pipeline
+    ai/                    llm (Groq/compatible) · prompts versionados · A · B · C · D · pipeline
     repositories/          Persistencia en Supabase (hito 8)
     env.ts · supabase.ts
 scripts/catalog-to-sql.ts  JSON del catálogo → supabase/seed/catalog.sql
@@ -93,7 +93,7 @@ Decisiones del brief respetadas: se empieza sin cuenta, se completa y se ve el i
 - El estado del visitante vive en `sessionStorage` (se borra al cerrar la pestaña).
 - El servidor es **sin estado** para visitantes: recibe el estado completo, lo valida con Zod, responde y no guarda nada.
 - La IA (solo con consentimiento) recibe preguntas y respuestas y señales calculadas. Nunca edad, año escolar, zona ni identificadores; `store: false`.
-- Las claves (`OPENAI_API_KEY`, Supabase) solo existen en el servidor. No hay variables `NEXT_PUBLIC_` con secretos.
+- Las claves (`AI_API_KEY`, Supabase) solo existen en el servidor. No hay variables `NEXT_PUBLIC_` con secretos.
 - Persistencia (hito 8): solo con cuenta, con RLS en todas las tablas; la app usa la anon key + sesión del usuario, nunca `service_role`.
 
 Detalle en `PRIVACY.md`.
@@ -105,7 +105,7 @@ Se mantuvo el stack propuesto. Notas:
 - **Next.js 16** (App Router). `middleware` pasó a llamarse `proxy`; `params` y `cookies()` son asíncronos.
 - **Tailwind 4** con tokens en `@theme` (`globals.css`).
 - **Zod 4** para validar todo lo que entra del cliente y todo lo que devuelve la IA.
-- **IA**: OpenAI Responses API con Structured Outputs. `src/server/ai/llm.ts` es la única puerta al proveedor. Modelos por variable de entorno (`gpt-6.1-sol` y `gpt-6-luna` por defecto). Sin clave, la app funciona entera con reglas.
+- **IA**: Groq (plan gratis) vía API compatible con OpenAI, con salidas JSON estrictas. `src/server/ai/llm.ts` es la única puerta al proveedor. Proveedor y modelos por variable de entorno. Sin clave, la app funciona entera con reglas.
 - Fuentes autoalojadas vía `@fontsource` (Manrope + Instrument Serif): sin llamadas a Google en runtime.
 
 Ver `DECISIONS.md` para el razonamiento de cada elección, `ROADMAP.md` para hitos y riesgos, `ACADEMIC_CATALOG.md` para el catálogo y `RECOMMENDATIONS.md` para el motor de recomendaciones.

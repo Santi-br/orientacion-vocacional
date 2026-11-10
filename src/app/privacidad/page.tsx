@@ -14,7 +14,7 @@ export default function Page() {
         <div className="mt-8 grid gap-6 text-[16px] leading-relaxed text-[var(--text-muted)]">
           <p>No te pedimos nombre, mail, documento ni fecha de nacimiento para hacer el test. Solo un rango de edad, el año del secundario y una zona aproximada.</p>
           <p>Mientras no tengas cuenta, tus respuestas quedan en tu navegador y se borran cuando cerrás la pestaña. Para calcular tu siguiente pregunta y tu informe las procesamos en nuestro servidor, sin guardarlas.</p>
-          <p>Si activás el análisis con IA, tus respuestas (sin edad, zona ni datos que te identifiquen) se envían a OpenAI únicamente para elegir las próximas preguntas y armar tus recomendaciones. Le pedimos que no las guarde. No las usamos para publicidad ni las vendemos.</p>
+          <p>Si activás el análisis con IA, tus respuestas (sin edad, zona ni datos que te identifiquen) se envían a un servicio de IA (Groq) únicamente para elegir las próximas preguntas y armar tus recomendaciones. Lo configuramos para que no las guarde. No las usamos para publicidad ni las vendemos.</p>
           <p>Si más adelante creás una cuenta para guardar tus resultados, vas a poder descargarlos y eliminarlos cuando quieras.</p>
           <p>Esta herramienta no es un diagnóstico psicológico. Los resultados son un punto de partida para explorar.</p>
         </div>

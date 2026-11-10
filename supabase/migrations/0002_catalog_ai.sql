@@ -99,4 +99,4 @@ grant execute on function public.delete_my_data() to authenticated;
 insert into public.methodology_versions (version, status, notes)
 values ('0.2.0', 'aprobada', 'Metodología exploratoria asistida por IA. Sin validación psicométrica. Revisión profesional opcional a futuro.');
 insert into public.catalog_versions (version, notes)
-values ('2026-11-10', 'Primera tanda: 11 instituciones prioritarias (9 con oferta cargada, UNSAM y UNLaM pendientes).');
+values ('2026-11-10', 'Primera tanda: 11 instituciones prioritarias.');

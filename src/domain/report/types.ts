@@ -24,6 +24,8 @@ export type InstitutionOffer = {
     level: ProgramLevel;
     orientations: string[];
     startNote?: string;
+    modality?: string;
+    durationText?: string;
     source: string;
     verifiedAt: string;
   }[];

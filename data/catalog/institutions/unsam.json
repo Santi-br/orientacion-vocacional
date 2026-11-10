@@ -5,14 +5,93 @@
   "sector": "publica",
   "kind": "universidad",
   "website": "https://www.unsam.edu.ar",
-  "status": "pendiente",
+  "status": "parcial",
   "verifiedAt": "2026-11-10",
   "notes": [
-    "El sitio oficial rechazó las consultas automatizadas el 10/11/2026 (unsam.edu.ar/oferta/carreras/ y otras páginas).",
-    "La página de listado de carreras (unsam.edu.ar/estudiantes/guia/listado-carreras.php) solo muestra tipos de título por escuela, sin nombres: no alcanza para cargar carreras.",
-    "Escuelas e institutos con oferta de grado o pregrado según esa página: Escuela de Ciencia y Tecnología, Escuela de Economía y Negocios, Escuela de Humanidades, Escuela de Política y Gobierno, Escuela IDAES, Instituto de Calidad Industrial, Instituto de Rehabilitación y Movimiento, Instituto Dan Beninson, Instituto de Tecnología Prof. Jorge Sabato, OESPU, Escuela de Arte y Patrimonio, Escuela de Hábitat y Sostenibilidad, Escuela de Bio y Nanotecnologías.",
-    "Verificación manual necesaria antes de incluir carreras."
+    "Listado del buscador oficial de oferta (unsam.edu.ar/oferta/carreras/), consultado con un navegador porque el sitio rechaza las consultas automáticas.",
+    "El buscador muestra el nombre corto y el tipo de título por separado (p. ej. 'Electrónica · Ingeniería'). El nombre completo se armó como 'Ingeniería en Electrónica', 'Licenciatura en …', etc.: confirmar el nombre oficial en la página de cada carrera.",
+    "Solo se cargó pregrado y grado (incluye ciclos de complementación curricular, que no se recomiendan a quien termina el secundario). No se cargó posgrado.",
+    "Ingeniería Industrial e Ingeniería Ambiental figuran en dos unidades académicas cada una.",
+    "La dirección del campus es la del pie del sitio. Sede por carrera, duración y título: pendientes."
   ],
-  "campuses": [],
-  "units": []
+  "campuses": [
+    { "name": "Campus Miguelete", "address": "25 de Mayo y Francia, San Martín", "zone": "gba_norte", "role": "sede", "source": "https://www.unsam.edu.ar/oferta/carreras/" }
+  ],
+  "units": [
+    { "name": "Escuela de Ciencia y Tecnología", "kind": "escuela", "source": "https://www.unsam.edu.ar/oferta/carreras/", "programs": [
+      "Tecnicatura en Diagnóstico por Imágenes", "Tecnicatura en Programación Informática", "Tecnicatura en Redes Informáticas",
+      "Ingeniería en Electrónica", "Ingeniería Ambiental", "Ingeniería Biomédica", "Ingeniería en Energía",
+      "Ingeniería en Telecomunicaciones", "Ingeniería Industrial", "Ingeniería en Transporte", "Ingeniería en Sistemas Espaciales",
+      "Licenciatura en Física Médica", "Licenciatura en Biotecnología", "Licenciatura en Ciencia de Datos",
+      "Licenciatura en Desarrollo de Software",
+      "Licenciatura en Diagnóstico por Imágenes (Ciclo de Complementación Curricular)"
+    ] },
+    { "name": "Escuela de Economía y Negocios", "kind": "escuela", "source": "https://www.unsam.edu.ar/oferta/carreras/", "programs": [
+      "Martillero Público y Corredor de Comercio", "Tecnicatura en Guía de Turismo", "Contador Público", "Licenciatura en Turismo",
+      "Licenciatura en Administración y Gestión Empresarial", "Licenciatura en Economía", "Licenciatura en Economía del Conocimiento"
+    ] },
+    { "name": "Escuela de Humanidades", "kind": "escuela", "source": "https://www.unsam.edu.ar/oferta/carreras/", "programs": [
+      "Tecnicatura Universitaria en Acompañamiento Terapéutico", "Licenciatura en Psicopedagogía", "Licenciatura en Filosofía",
+      "Licenciatura en Educación", "Licenciatura en Historia", "Licenciatura en Estudios de la Comunicación", "Licenciatura en Letras",
+      "Profesorado en Ciencias de la Educación", "Profesorado en Letras", "Profesorado en Historia",
+      "Licenciatura en Enseñanza de las Ciencias (Ciclo de Complementación Curricular)",
+      "Licenciatura en Enseñanza de las Ciencias Sociales (Ciclo de Complementación Curricular)",
+      "Licenciatura en Enseñanza de la Lengua y la Literatura (Ciclo de Complementación Curricular)",
+      "Licenciatura en Comunicación Audiovisual (Ciclo de Complementación Curricular)",
+      "Licenciatura en Lengua Inglesa (Ciclo de Complementación Curricular)",
+      "Licenciatura en Artes (Ciclo de Complementación Curricular)",
+      "Licenciatura en Educación Inicial (Ciclo de Complementación Curricular)",
+      "Licenciatura en Educación Especial (Ciclo de Complementación Curricular)",
+      "Licenciatura en Filosofía (Ciclo de Complementación Curricular)",
+      "Profesorado Universitario (Ciclo de Complementación Curricular)"
+    ] },
+    { "name": "Escuela de Política y Gobierno", "kind": "escuela", "source": "https://www.unsam.edu.ar/oferta/carreras/", "programs": [
+      "Licenciatura en Administración Pública", "Licenciatura en Ciencia Política", "Licenciatura en Relaciones Internacionales",
+      "Profesorado en Ciencia Política", "Licenciatura en Administración Pública (Ciclo de Complementación Curricular)"
+    ] },
+    { "name": "Escuela Interdisciplinaria de Altos Estudios Sociales - IDAES", "kind": "escuela", "source": "https://www.unsam.edu.ar/oferta/carreras/", "programs": [
+      "Licenciatura en Sociología", "Licenciatura en Antropología Social y Cultural"
+    ] },
+    { "name": "Instituto de Calidad Industrial", "kind": "instituto", "source": "https://www.unsam.edu.ar/oferta/carreras/", "programs": [
+      "Ingeniería Industrial", "Ingeniería en Alimentos"
+    ] },
+    { "name": "Instituto de Rehabilitación y Movimiento", "kind": "instituto", "source": "https://www.unsam.edu.ar/oferta/carreras/", "programs": [
+      "Licenciatura en Ortesis y Prótesis", "Licenciatura en Terapia Ocupacional", "Licenciatura en Enfermería",
+      "Licenciatura en Educación Física (Ciclo de Complementación Curricular)",
+      "Licenciatura en Kinesiología y Fisiatría (Ciclo de Complementación Curricular)",
+      "Licenciatura en Rehabilitación Visual (Ciclo de Complementación Curricular)"
+    ] },
+    { "name": "Instituto Dan Beninson", "kind": "instituto", "source": "https://www.unsam.edu.ar/oferta/carreras/", "programs": [
+      "Tecnicatura en Aplicaciones Nucleares", "Ingeniería Nuclear con orientación en aplicaciones"
+    ] },
+    { "name": "Instituto de Tecnología Prof. Jorge Sabato", "kind": "instituto", "source": "https://www.unsam.edu.ar/oferta/carreras/", "programs": [
+      "Ingeniería en Materiales"
+    ] },
+    { "name": "Observatorio de Educación Superior y Políticas Universitarias (OESPU)", "kind": "instituto", "source": "https://www.unsam.edu.ar/oferta/carreras/", "programs": [
+      "Tecnicatura en Gestión Universitaria"
+    ] },
+    { "name": "Escuela de Arte y Patrimonio", "kind": "escuela", "source": "https://www.unsam.edu.ar/oferta/carreras/", "programs": [
+      "Tecnicatura en Animación 3D y Efectos Visuales", "Licenciatura en Artes Escénicas", "Licenciatura en Cine Documental",
+      "Licenciatura en Fotografía", "Licenciatura en Música Argentina",
+      "Licenciatura en Conservación y Restauración del Patrimonio Cultural", "Licenciatura en Prácticas Artísticas Contemporáneas"
+    ] },
+    { "name": "Escuela de Hábitat y Sostenibilidad", "kind": "escuela", "source": "https://www.unsam.edu.ar/oferta/carreras/", "programs": [
+      "Arquitectura", "Ingeniería Ambiental", "Ingeniería en Transporte", "Licenciatura en Gestión y Tecnología Ferroviaria"
+    ] },
+    { "name": "Escuela de Bio y Nanotecnologías", "kind": "escuela", "source": "https://www.unsam.edu.ar/oferta/carreras/", "programs": [
+      "Tecnicatura en Laboratorio", "Ingeniería en Agrobiotecnología", "Licenciatura en Biotecnología"
+    ] }
+  ],
+  "programDetails": {
+    "Licenciatura en Gestión y Tecnología Ferroviaria": { "startNote": "Licenciatura con título intermedio" },
+    "Licenciatura en Enseñanza de las Ciencias (Ciclo de Complementación Curricular)": { "modality": "virtual" },
+    "Licenciatura en Enseñanza de las Ciencias Sociales (Ciclo de Complementación Curricular)": { "modality": "virtual" },
+    "Licenciatura en Enseñanza de la Lengua y la Literatura (Ciclo de Complementación Curricular)": { "modality": "virtual" },
+    "Licenciatura en Lengua Inglesa (Ciclo de Complementación Curricular)": { "modality": "virtual" },
+    "Licenciatura en Artes (Ciclo de Complementación Curricular)": { "modality": "virtual" },
+    "Licenciatura en Educación Inicial (Ciclo de Complementación Curricular)": { "modality": "virtual" },
+    "Licenciatura en Educación Especial (Ciclo de Complementación Curricular)": { "modality": "virtual" },
+    "Profesorado Universitario (Ciclo de Complementación Curricular)": { "modality": "virtual" },
+    "Licenciatura en Administración Pública (Ciclo de Complementación Curricular)": { "modality": "virtual" }
+  }
 }

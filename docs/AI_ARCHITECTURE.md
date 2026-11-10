@@ -2,32 +2,49 @@
 
 La IA es el núcleo de la experiencia: interpreta respuestas, decide preguntas, construye el perfil, elige carreras y redacta el informe. Las reglas determinísticas quedan como **base trazable** y **respaldo**: si la IA no está configurada, la persona no dio consentimiento o una llamada falla, el producto sigue funcionando y lo dice.
 
-## Modelos (elegidos el 10/11/2026)
+## Proveedor y modelos: costo cero
 
-Consultado en [developers.openai.com/api/docs/models](https://developers.openai.com/api/docs/models) y las fichas de cada modelo.
+Decisión del 10/11/2026: **no pagar por la IA**. OpenAI no tiene plan gratis (la ficha de `gpt-6.1-sol` dice "Free: not supported"), así que se usa **Groq**, que tiene plan gratis y una API compatible con la de OpenAI.
 
-| Modelo | Posicionamiento oficial | Precio por 1M tokens (entrada / salida) | Structured Outputs | Uso en PROJECT |
-|---|---|---|---|---|
-| `gpt-6-astra` | El más capaz, para el trabajo más exigente | US$10 / US$50 | — | No usado: costo 5× Sol sin necesidad para esta tarea |
-| **`gpt-6.1-sol`** | "Near-Astra performance for complex work at a lower cost" | US$2 / US$10 | Sí | **Modelo de razonamiento**: perfil (A.2) y recomendaciones (C) |
-| `gpt-6.1-terra` | Rápido, visión, escritura natural | US$1 / US$5 | — | Alternativa para D si la redacción de Luna no alcanza |
-| **`gpt-6-luna`** | "Most efficient model for focused, high-volume tasks" | US$0,10 / US$0,50 | Sí | **Modelo rápido**: respuestas abiertas (A.1), planificador de preguntas (B), textos del informe (D) |
+| Opción gratis | Datos | Salida estructurada | Decisión |
+|---|---|---|---|
+| **Groq (plan gratis)** | No retiene datos de inferencia por defecto; retención cero activable por cualquier cliente ([Your data](https://console.groq.com/docs/your-data)) | `json_schema` estricto en `gpt-oss-20b`, `gpt-oss-120b` y `qwen3.8-27b` ([Structured outputs](https://console.groq.com/docs/structured-outputs)) | **Elegida** |
+| Gemini API (plan gratis) | El plan gratis indica "Content used to improve our products" ([precios](https://aistudio.google.com/docs/pricing)) | Sí | Descartada: no es aceptable con respuestas de menores |
+| Modelos locales (Ollama, etc.) | No salen de la máquina | Varía | Descartada para el MVP: necesitan una computadora encendida y potente; no corren en Vercel |
 
-Los cuatro tienen ventana de 1,05M tokens y razonamiento configurable (`reasoning.effort`, default `medium`).
+### Modelos en Groq
 
-**Por qué dos modelos.** El planificador corre varias veces durante el test y tiene que responder en pocos segundos; Luna con esfuerzo `low` alcanza. La elección de carreras es la tarea que más razonamiento pide (relacionar intereses con carreras de forma no obvia), y se hace una sola vez por informe: ahí conviene Sol con esfuerzo `medium`.
+| Tarea | Modelo | Por qué |
+|---|---|---|
+| A.2 perfil exploratorio · C recomendaciones | `openai/gpt-oss-120b` (esfuerzo `medium`) | El más capaz del plan gratis con salida estricta |
+| A.1 respuestas abiertas · D textos del informe | `openai/gpt-oss-20b` (esfuerzo `low`) | Rápido, tareas acotadas |
+| B preguntas adaptativas | `qwen/qwen3.8-27b` (esfuerzo `low`) | Usa una cuota distinta; es la tarea que más se repite |
 
-**Costo estimado** (a medir en el piloto): un informe ≈ 15–20k tokens en Sol (entrada + salida + razonamiento) más 8–10 llamadas cortas a Luna, del orden de **US$0,10–0,20 por evaluación completa**.
+**Cuota gratuita** (tabla de [rate limits](https://console.groq.com/docs/rate-limits), por modelo): 30 pedidos/min, 1.000 pedidos/día, 8.000 tokens/min y 200.000 tokens/día. Groq aclara que los valores exactos de cada cuenta se ven en *Settings → Limits*.
 
-**Configurable sin tocar código** (`.env.local`):
+Cómo se cuida la cuota:
+- Las tareas se reparten entre tres modelos, cada uno con su propia cuota.
+- El planificador consulta a la IA cada 4 respuestas o después de una abierta, con un máximo de 6 preguntas generadas, y recibe solo 10 candidatas y las últimas preguntas.
+- El motor de recomendaciones recibe 40 carreras candidatas.
+- Ante un límite por minuto (HTTP 429), espera lo que indique Groq (máximo 20 s) y reintenta una vez.
+- Si la cuota del día se agota, el test y el informe siguen funcionando con reglas y el informe lo indica.
+
+Estimación (a medir con la cuenta real): **unas 15–25 evaluaciones completas por día** sin costo. Alcanza para pruebas con 20–30 estudiantes organizadas en tandas.
+
+**Configuración** (`.env.local`):
 
 ```
-OPENAI_API_KEY=
-OPENAI_MODEL_REASONING=gpt-6.1-sol
-OPENAI_MODEL_FAST=gpt-6-luna
-OPENAI_EFFORT_REASONING=medium
-OPENAI_EFFORT_FAST=low
+AI_API_KEY=            # clave gratis de console.groq.com
+# Opcionales:
+AI_PROVIDER=groq       # o openai, si algún día se paga
+AI_MODEL_REASONING=openai/gpt-oss-120b
+AI_MODEL_FAST=openai/gpt-oss-20b
+AI_MODEL_PLANNER=qwen/qwen3.8-27b
 ```
+
+Pasos para la cuenta: crear la clave en console.groq.com y activar **Zero Data Retention** en *Settings → Data Controls*.
+
+Pasar a un proveedor pago (por ejemplo, OpenAI con `gpt-6.1-sol`) es cambiar `AI_PROVIDER` y la clave: el código no cambia.
 
 ## Los cuatro módulos
 
@@ -35,13 +52,13 @@ OPENAI_EFFORT_FAST=low
  durante el test                                  al terminar
  ───────────────                                  ───────────
  respuesta abierta ─► A.1 open_answer_analysis    A.2 profile_synthesis  ── perfil exploratorio
-                      (Luna) señales + temas            (Sol)                   │
+                      (gpt-oss-20b)                     (gpt-oss-120b)          │
                                                                                 ▼
- cada 3 respuestas ─► B  question_planner          C  career_matching  ◄── candidatas del
- o tras una abierta    (Luna) banco o pregunta          (Sol)                catálogo verificado
-                       nueva validada                   │
+ cada 4 respuestas ─► B  question_planner          C  career_matching  ◄── candidatas del
+ o tras una abierta    (qwen3.8-27b) banco o            (gpt-oss-120b)       catálogo verificado
+                       pregunta nueva validada          │
                                                         ▼
-                                                   D  report_writer (Luna) ── síntesis y cierre
+                                                   D  report_writer (gpt-oss-20b) ── síntesis y cierre
 ```
 
 | Módulo | Archivo | Entrada | Salida (validada) | Respaldo |
@@ -56,10 +73,10 @@ OPENAI_EFFORT_FAST=low
 
 ## Garantías
 
-- **No inventa datos académicos.** C recibe solo carreras del catálogo y el esquema de salida declara sus IDs como `enum`: un ID inexistente no pasa la validación. Instituciones, nombres oficiales, unidades académicas y fuentes se agregan *después*, desde el catálogo. Las "actividades" son orientativas y el prompt prohíbe nombrar materias, años o datos de instituciones; la UI lo aclara.
+- **No inventa datos académicos.** C recibe solo carreras del catálogo y el esquema de salida (JSON Schema estricto) declara sus IDs como `enum`: un ID inexistente no pasa la validación. Instituciones, nombres oficiales, unidades académicas y fuentes se agregan *después*, desde el catálogo. Las "actividades" son orientativas y el prompt prohíbe nombrar materias, años o datos de instituciones; la UI lo aclara.
 - **Evidencia trazable.** Los respaldos referencian IDs de respuestas reales (también `enum`).
-- **Salidas estructuradas estrictas.** Responses API + `zodTextFormat` (strict). Todo se vuelve a acotar en código (largos, cantidades, pesos).
-- **Preguntas generadas seguras.** Se descartan si tienen menos de 3 opciones, si son abiertas sin consentimiento o si no traen señales válidas. Tope de 8 por evaluación.
+- **Salidas estructuradas estrictas.** `response_format: json_schema` con `strict: true`, generado desde los esquemas Zod; además se valida con Zod y se acota en código (largos, cantidades, pesos).
+- **Preguntas generadas seguras.** Se descartan si tienen menos de 3 opciones, si son abiertas sin consentimiento o si no traen señales válidas. Tope de 6 por evaluación.
 - **El texto del estudiante es dato.** Va delimitado y los prompts indican ignorar instrucciones dentro de él.
 - **Sin encasillar.** Los prompts piden hablar de tendencias, tratar las contradicciones como pistas y mantener variedad en las recomendaciones.
 - **Alcance honesto.** Todos los prompts recuerdan que no es un test psicométrico validado, ni un diagnóstico, ni reemplaza la orientación profesional.
@@ -70,12 +87,14 @@ Cada llamada devuelve `{ task, model, promptVersion, ok }`. Las del test viajan 
 
 Los prompts viven en `server/ai/prompts.ts` con `id` y `version`. Cambiar el texto de un prompt implica subir su versión.
 
-## Datos que salen hacia OpenAI
+## Datos que salen hacia el proveedor
 
-Solo respuestas (texto de las preguntas + opción elegida o texto escrito) y señales calculadas. **Nunca** edad, año escolar, zona ni identificadores. Se envía `store: false`. Sin consentimiento en el onboarding no hay ninguna llamada. Ver `PRIVACY.md`.
+Solo respuestas (texto de las preguntas + opción elegida o texto escrito) y señales calculadas. **Nunca** edad, año escolar, zona ni identificadores. Con retención cero activada en Groq. Sin consentimiento en el onboarding no hay ninguna llamada. Ver `PRIVACY.md`.
 
 ## Cómo probarlo
 
 `src/server/ai/__tests__/ai.test.ts` usa un modelo falso para verificar que se rechazan carreras inventadas, se descartan preguntas mal formadas, se completan instituciones desde el catálogo, se registran modelo y versión de prompt, y que el informe cae a reglas si la IA falla. `src/test/schema-check.test.ts` verifica que los esquemas se conviertan a JSON Schema estricto.
 
-**Pendiente:** correr el flujo completo con una clave real y ajustar prompts con las primeras evaluaciones (ver hito 3 del roadmap).
+Además, el flujo completo se probó a través del SDK real contra un servidor que imita la API de Groq: 11 llamadas por evaluación con el modelo, esfuerzo y esquema estricto correctos, 6 preguntas generadas respondidas, y recuperación ante un límite por minuto simulado.
+
+**Pendiente:** correr el flujo con la clave gratis real y ajustar prompts con las primeras evaluaciones (ver hito 3 del roadmap). Los modelos abiertos pueden necesitar prompts más guiados que los de OpenAI.

@@ -132,6 +132,8 @@ export function institutionsFor(careerId: string, context: Partial<Context>): In
       level: prog.level,
       orientations: prog.orientations,
       startNote: prog.startNote,
+      modality: prog.modality,
+      durationText: prog.durationText,
       source: prog.source,
       verifiedAt: prog.verifiedAt,
     });

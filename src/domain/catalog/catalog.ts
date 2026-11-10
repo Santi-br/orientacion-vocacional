@@ -38,7 +38,10 @@ type RawInstitution = {
   notes: string[];
   campuses: { name: string; address: string; zone: string; role: string; source: string }[];
   units: { name: string; kind: string; source: string; programs: string[] }[];
-  programDetails?: Record<string, { startNote?: string; orientations?: string[] }>;
+  programDetails?: Record<
+    string,
+    { startNote?: string; orientations?: string[]; modality?: "presencial" | "virtual" | "mixta"; durationText?: string }
+  >;
 };
 
 export type Institution = {
@@ -69,6 +72,8 @@ export type Program = {
   // institucional, pendiente salvo que la fuente lo indique
   orientations: string[];
   startNote?: string;
+  modality?: "presencial" | "virtual" | "mixta"; // solo si la fuente lo publica
+  durationText?: string; // tal como lo publica la fuente
   pending: string[];
 };
 
@@ -127,7 +132,11 @@ function build() {
           careerId: (level === "profesorado" ? "prof-" : "") + key.replace(/ /g, "-"),
           orientations: details?.orientations ?? [],
           startNote: details?.startNote,
-          pending: PENDING_FIELDS,
+          modality: details?.modality,
+          durationText: details?.durationText,
+          pending: PENDING_FIELDS.filter(
+            (f) => !(f === "modalidad" && details?.modality) && !(f === "duración" && details?.durationText),
+          ),
         };
         byName.set(officialName, p);
         programs.push(p);

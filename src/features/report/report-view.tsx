@@ -299,7 +299,7 @@ function CareerCard({ r, open = false }: { r: Recommendation; open?: boolean }) 
                 <div key={pr.officialName} className="mt-3">
                   <p className="text-[14.5px]">{pr.officialName}</p>
                   <p className="text-[12.5px] text-[var(--text-faint)]">
-                    {pr.units.join(" · ")}
+                    {[...pr.units, pr.durationText, pr.modality && MODALITY[pr.modality]].filter(Boolean).join(" · ")}
                     {pr.startNote && ` · ${pr.startNote}`}
                     {pr.orientations.length > 0 && ` · Orientaciones: ${pr.orientations.join(", ")}`}
                   </p>
@@ -317,7 +317,7 @@ function CareerCard({ r, open = false }: { r: Recommendation; open?: boolean }) 
           ))}
         </ul>
         <p className="mt-3 text-[12.5px] leading-relaxed text-[var(--text-faint)]">
-          Pendiente de verificar: {r.pendingData.join(", ")}. Consultá la fuente oficial antes de decidir.
+          Pendiente de verificar en la mayoría de las instituciones: {r.pendingData.join(", ")}. Consultá la fuente oficial antes de decidir.
         </p>
       </div>
     </details>
@@ -348,6 +348,8 @@ function Badge({ children, tone = "plain" }: { children: ReactNode; tone?: "plai
     </span>
   );
 }
+
+const MODALITY: Record<string, string> = { presencial: "Presencial", virtual: "A distancia", mixta: "Semipresencial" };
 
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 

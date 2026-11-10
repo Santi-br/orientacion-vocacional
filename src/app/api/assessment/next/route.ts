@@ -7,7 +7,7 @@ import type { Item, ResponseRecord } from "@/domain/methodology/types";
 import { digest, facetSnapshot } from "@/domain/report/digest";
 import type { AITrace } from "@/domain/report/types";
 import { aiEnabled } from "@/server/env";
-import { openaiLLM } from "@/server/ai/llm";
+import { providerLLM } from "@/server/ai/llm";
 import { analyzeOpenAnswer } from "@/server/ai/profile-analyzer";
 import { planNextQuestion } from "@/server/ai/question-planner";
 
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
   if (useAI && last?.answer.kind === "text" && !last.derived) {
     const item = resolveItem(last);
     if (item) {
-      const res = await analyzeOpenAnswer(openaiLLM, item.prompt, last.answer.text);
+      const res = await analyzeOpenAnswer(providerLLM, item.prompt, last.answer.text);
       trace.push(res.trace);
       if (res.data) {
         last.derived = { signals: res.data.signals, themes: res.data.themes };
@@ -47,12 +47,12 @@ export async function POST(req: Request) {
   // B · Punto de control: la IA elige o formula la próxima pregunta.
   let out: { type: "item"; item: Item; reason: string } | { type: "done" };
   if (step.type === "plan") {
-    const res = await planNextQuestion(openaiLLM, {
-      candidates: step.candidates,
+    const res = await planNextQuestion(providerLLM, {
+      candidates: step.candidates.slice(0, 10),
       focus: step.focus,
       gaps: step.gaps,
       recent: digest(responses).slice(-6),
-      askedPrompts: responses.map((r) => resolveItem(r)?.prompt ?? "").filter(Boolean),
+      askedPrompts: responses.map((r) => resolveItem(r)?.prompt ?? "").filter(Boolean).slice(-12),
       facets: facetSnapshot(buildProfile(responses, onboarding)),
       generatedCount: responses.filter((r) => r.generatedItem).length,
       nextGenIndex: responses.filter((r) => r.itemId.startsWith("gen-")).length + 1,

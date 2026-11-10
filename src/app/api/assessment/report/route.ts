@@ -3,7 +3,7 @@ import { AssessmentStateSchema } from "@/domain/methodology/schemas";
 import { buildReport } from "@/domain/report/build-report";
 import type { ResponseRecord } from "@/domain/methodology/types";
 import { aiEnabled } from "@/server/env";
-import { openaiLLM } from "@/server/ai/llm";
+import { providerLLM } from "@/server/ai/llm";
 import { buildAIReport } from "@/server/ai/pipeline";
 
 export const maxDuration = 150;
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
   const responses = parsed.data.responses as ResponseRecord[];
 
   if (aiEnabled && onboarding.aceptaIA) {
-    return NextResponse.json(await buildAIReport(openaiLLM, responses, onboarding, aiTrace));
+    return NextResponse.json(await buildAIReport(providerLLM, responses, onboarding, aiTrace));
   }
   const report = buildReport(responses, onboarding);
   report.engine.note = onboarding.aceptaIA

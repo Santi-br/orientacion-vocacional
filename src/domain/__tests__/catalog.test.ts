@@ -7,7 +7,7 @@ const FIELD_IDS = new Set(STUDY_FIELDS.map((f) => f.id));
 
 describe("catálogo", () => {
   it("tiene las 11 instituciones prioritarias", () => {
-    expect(CATALOG.institutions.map((i) => i.id).sort()).toEqual(
+    expect(CATALOG.institutions.filter((i) => i.status !== "pendiente").map((i) => i.id).sort()).toEqual(
       ["itba", "ub", "uba", "uade", "udesa", "unlam", "unsam", "untref", "up", "utdt", "utn-ba"].sort(),
     );
   });

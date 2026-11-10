@@ -4,7 +4,7 @@
  */
 import { FACETS, FACET_KEYS } from "@/domain/methodology/dimensions";
 
-export type Prompt = { id: string; version: string; tier: "reasoning" | "fast"; system: string };
+export type Prompt = { id: string; version: string; tier: "reasoning" | "fast" | "planner"; system: string };
 
 const FACET_CATALOG = FACET_KEYS.map((k) => `${k}: ${FACETS[k].label}`).join("\n");
 
@@ -35,8 +35,8 @@ ${FACET_CATALOG}
 
   planner: {
     id: "question_planner",
-    version: "1.0.0",
-    tier: "fast",
+    version: "1.1.0",
+    tier: "planner",
     system: `Sos el motor de preguntas adaptativas. Decidís la PRÓXIMA pregunta del test.${BASE}
 Objetivos, en orden:
 1. Cubrir las dimensiones con poca información (se indican como "faltan").

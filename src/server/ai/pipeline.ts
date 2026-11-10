@@ -36,7 +36,7 @@ export async function buildAIReport(
   const c = await matchCareers(llm, {
     profile: exploratory,
     digest: lines,
-    candidates: selectCandidates(profile),
+    candidates: selectCandidates(profile, 40), // acotado para entrar en el límite por minuto del plan gratuito
     context: profile.context,
     contextLabels: contextLabels(profile),
   });
