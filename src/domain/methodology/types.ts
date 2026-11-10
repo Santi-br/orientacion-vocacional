@@ -76,8 +76,8 @@ export type ResponseRecord = {
   answer: Answer;
   /** Señales extraídas por IA de una respuesta abierta (validadas en servidor). */
   derived?: { signals: Signals; themes: string[] };
-  /** Ítems generados viajan con su definición para poder interpretarse luego. */
-  generatedItem?: OpenItem;
+  /** Ítems generados por IA viajan con su definición para poder interpretarse luego. */
+  generatedItem?: Item;
 };
 
 export type Onboarding = {
@@ -85,5 +85,5 @@ export type Onboarding = {
   anio: "3" | "4" | "5" | "6" | "egresado" | "otro";
   zona: Context["zona"];
   areasConocidas: FacetKey[]; // áreas que ya tiene en mente (opcional)
-  aceptaIA: boolean; // consentimiento para analizar respuestas abiertas con IA
+  aceptaIA: boolean; // consentimiento para que la IA analice las respuestas y arme las recomendaciones
 };

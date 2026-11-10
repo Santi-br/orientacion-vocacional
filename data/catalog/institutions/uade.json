@@ -1,0 +1,67 @@
+{
+  "id": "uade",
+  "name": "Universidad Argentina de la Empresa",
+  "shortName": "UADE",
+  "sector": "privada",
+  "kind": "universidad",
+  "website": "https://www.uade.edu.ar",
+  "status": "parcial",
+  "verifiedAt": "2026-11-10",
+  "notes": [
+    "Listado del Fact Sheet 2026 oficial de UADE (PDF en uade.edu.ar). Las dobles titulaciones no están incluidas en ese documento.",
+    "Arquitectura figura tanto en Facultad de Arquitectura y Diseño como en Facultad de Arquitectura y Urbanismo.",
+    "El sitio da dos numeraciones distintas para la sede Belgrano; se usa la del Fact Sheet.",
+    "Solo Gestión de Tecnología de la Información indica modalidad (presencial y online). Resto: pendiente. Sede por carrera: pendiente."
+  ],
+  "campuses": [
+    { "name": "Campus Buenos Aires", "address": "Lima 757, Monserrat, CABA", "zone": "caba", "role": "sede", "source": "https://uade.edu.ar/media/20unmfxs/fact-sheet-2026-español-vf.pdf" },
+    { "name": "UADE Recoleta", "address": "Libertad 1340, Recoleta, CABA", "zone": "caba", "role": "sede", "source": "https://uade.edu.ar/media/20unmfxs/fact-sheet-2026-español-vf.pdf" },
+    { "name": "UADE Belgrano", "address": "11 de Septiembre de 1888 N° 1990, Belgrano, CABA", "zone": "caba", "role": "sede", "source": "https://uade.edu.ar/media/20unmfxs/fact-sheet-2026-español-vf.pdf" },
+    { "name": "Campus Costa Argentina", "address": "Av. Intermédanos Sur 776, Pinamar", "zone": "otra", "role": "sede", "source": "https://uade.edu.ar/media/20unmfxs/fact-sheet-2026-español-vf.pdf" }
+  ],
+  "units": [
+    { "name": "Facultad de Ciencias Económicas", "kind": "facultad", "source": "https://uade.edu.ar/media/20unmfxs/fact-sheet-2026-español-vf.pdf", "programs": [
+      "Contador Público", "Licenciatura en Administración de Empresas", "Licenciatura en Administración de Empresas + Bachelor in Business",
+      "Licenciatura en Comercio Internacional", "Licenciatura en Dirección de Negocios Globales (GBM)",
+      "Licenciatura en Dirección en Finanzas Globales (GFM)", "Licenciatura en Economía", "Licenciatura en Finanzas",
+      "Licenciatura en Finanzas Digitales", "Licenciatura en Marketing", "Licenciatura en Negocios Digitales",
+      "Licenciatura en Recursos Humanos"
+    ] },
+    { "name": "Facultad de Arquitectura y Diseño", "kind": "facultad", "source": "https://uade.edu.ar/media/20unmfxs/fact-sheet-2026-español-vf.pdf", "programs": [
+      "Arquitectura", "Licenciatura en Diseño Audiovisual", "Licenciatura en Diseño de Interiores",
+      "Licenciatura en Diseño Estratégico", "Licenciatura en Diseño Gráfico", "Licenciatura en Diseño Industrial",
+      "Licenciatura en Diseño Textil e Indumentaria", "Licenciatura en Diseño y Gestión de Estéticas para la Moda",
+      "Licenciatura en Diseño de Productos Interactivos y Realidad Virtual (Diseño XR)",
+      "Licenciatura en Diseño Multimedia y de Interacción"
+    ] },
+    { "name": "Facultad de Ciencias Jurídicas y Sociales", "kind": "facultad", "source": "https://uade.edu.ar/media/20unmfxs/fact-sheet-2026-español-vf.pdf", "programs": [
+      "Abogacía", "Licenciatura en Criminología y Ciberdelitos", "Licenciatura en Política y Administración Pública",
+      "Licenciatura en Relaciones Internacionales y Gobierno", "Traductorado Público en Idioma Inglés",
+      "Traductorado Público en Idioma Inglés (Ciclo de Licenciatura)"
+    ] },
+    { "name": "Facultad de Ingeniería y Ciencias Exactas", "kind": "facultad", "source": "https://uade.edu.ar/media/20unmfxs/fact-sheet-2026-español-vf.pdf", "programs": [
+      "Ingeniería Electromecánica", "Ingeniería Electrónica", "Ingeniería en Alimentos", "Ingeniería en Informática",
+      "Ingeniería Industrial", "Licenciatura en Bioinformática", "Licenciatura en Biotecnología",
+      "Licenciatura en Desarrollo de Videojuegos", "Licenciatura en Gestión Ambiental",
+      "Licenciatura en Gestión de Tecnología de la Información", "Licenciatura en Inteligencia Artificial y Ciencia de Datos",
+      "Licenciatura en Producción y Gestión Agropecuaria", "Licenciatura en Tecnología Industrial de los Alimentos"
+    ] },
+    { "name": "Facultad de Ciencias de la Salud", "kind": "facultad", "source": "https://uade.edu.ar/media/20unmfxs/fact-sheet-2026-español-vf.pdf", "programs": [
+      "Licenciatura en Gestión de Servicios de Salud", "Licenciatura en Gestión de Servicios de Salud (Ciclo de Licenciatura)",
+      "Licenciatura en Nutrición", "Licenciatura en Psicología"
+    ] },
+    { "name": "Facultad de Arquitectura y Urbanismo", "kind": "facultad", "source": "https://uade.edu.ar/media/20unmfxs/fact-sheet-2026-español-vf.pdf", "programs": [
+      "Arquitectura"
+    ] },
+    { "name": "Facultad de Comunicación", "kind": "facultad", "source": "https://uade.edu.ar/media/20unmfxs/fact-sheet-2026-español-vf.pdf", "programs": [
+      "Licenciatura en Artes Escénicas", "Licenciatura en Ciencias de la Comunicación",
+      "Licenciatura en Ciencias de la Comunicación (Ciclo de Licenciatura)", "Licenciatura en Comunicación Digital e Interactiva",
+      "Licenciatura en Comunicación Global", "Licenciatura en Deportes Electrónicos (Esports)", "Licenciatura en Gastronomía",
+      "Licenciatura en Gastronomía (Ciclo de Licenciatura)", "Licenciatura en Gestión Deportiva",
+      "Licenciatura en Gestión Deportiva (Ciclo de Licenciatura)", "Licenciatura en Gestión de Medios y Entretenimiento",
+      "Licenciatura en Gestión de Medios y Entretenimiento (Ciclo de Licenciatura)", "Licenciatura en Publicidad",
+      "Licenciatura en Relaciones Públicas y Comunicación Institucional", "Licenciatura en Turismo y Hotelería",
+      "Licenciatura en Turismo y Hotelería + BA in Hospitality Management", "Licenciatura en Turismo y Hotelería (Ciclo de Licenciatura)"
+    ] }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "utdt",
+  "name": "Universidad Torcuato Di Tella",
+  "shortName": "UTDT",
+  "sector": "privada",
+  "kind": "universidad",
+  "website": "https://www.utdt.edu",
+  "status": "parcial",
+  "verifiedAt": "2026-11-10",
+  "notes": [
+    "Listado de utdt.edu/ingreso (12 carreras de grado). La página no antepone 'Licenciatura en' ni indica duración o título: se guardan los nombres tal como aparecen.",
+    "Ingeniería Industrial se anuncia como nueva carrera con inicio en marzo de 2027.",
+    "Ciencias Sociales tiene orientaciones: Comunicación y Periodismo, Desarrollo Social y Económico, Sociedad y Mercado, Historia y Cultura, Arte.",
+    "La página menciona 'nuevas concentraciones' (Tecnología Digital, Inteligencia Artificial, Negocios Digitales) que no se cargan como carreras."
+  ],
+  "campuses": [
+    { "name": "Campus", "address": "Av. Figueroa Alcorta 7350, CABA", "zone": "caba", "role": "sede", "source": "https://www.utdt.edu/" }
+  ],
+  "units": [
+    { "name": "Carreras de grado", "kind": "listado", "source": "https://www.utdt.edu/ingreso", "programs": [
+      "Abogacía", "Arquitectura", "Diseño", "Administración de Empresas", "Economía Empresarial", "Economía",
+      "Ingeniería Industrial", "Ciencias del Comportamiento", "Estudios Internacionales", "Ciencia Política y Gobierno",
+      "Ciencias Sociales", "Historia"
+    ] }
+  ],
+  "programDetails": {
+    "Ingeniería Industrial": { "startNote": "Inicio anunciado: marzo de 2027", "orientations": ["Business Intelligence & AI", "Mecatrónica y Sistemas Inteligentes", "Producción y Sustentabilidad", "Gestión de Negocios"] },
+    "Ciencias Sociales": { "orientations": ["Comunicación y Periodismo", "Desarrollo Social y Económico", "Sociedad y Mercado", "Historia y Cultura", "Arte"] }
+  }
+}

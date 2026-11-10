@@ -109,11 +109,11 @@ export function Onboarding() {
             <label className="glass mt-7 flex cursor-pointer gap-4 rounded-[var(--radius-panel)] p-5">
               <input type="checkbox" checked={aceptaIA} onChange={(e) => setAceptaIA(e.target.checked)} className="mt-1 h-5 w-5 shrink-0 accent-[#9bcbd4]" />
               <span>
-                <span className="block text-[15.5px] font-semibold">Analizar mis respuestas escritas con IA</span>
+                <span className="block text-[15.5px] font-semibold">Usar IA para analizar mis respuestas</span>
                 <span className="mt-1 block text-[14px] leading-relaxed text-[var(--text-muted)]">
-                  Suma algunas preguntas abiertas. El texto se envía a un proveedor de IA solo para analizarlo, sin datos
-                  que te identifiquen y sin usarlo para publicidad. Si no lo activás, el test funciona igual con preguntas
-                  cerradas.
+                  La IA adapta las preguntas a lo que vas contando y arma tus recomendaciones eligiendo solo entre carreras
+                  reales. Tus respuestas se envían a OpenAI sin tu edad, tu zona ni nada que te identifique, solo para este
+                  análisis y nunca para publicidad. Si no lo activás, el test funciona igual con reglas fijas.
                 </span>
               </span>
             </label>

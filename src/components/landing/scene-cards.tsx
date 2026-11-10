@@ -89,7 +89,7 @@ export function SceneCards() {
       >
         <div className="glass rounded-[18px] p-4">
           <p className="text-[13px] text-[var(--text-muted)]">Afinidad clara</p>
-          <p className="mt-0.5 text-[17px] font-semibold">Diseño industrial y de producto</p>
+          <p className="mt-0.5 text-[17px] font-semibold">Diseño Industrial</p>
           <div className="mt-3 flex flex-wrap gap-1.5">
             {["hacer con las manos", "lo visual", "crear cosas nuevas"].map((t) => (
               <span key={t} className="rounded-full bg-white/12 px-2.5 py-1 text-[12px]">{t}</span>

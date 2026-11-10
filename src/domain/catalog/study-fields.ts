@@ -1,5 +1,5 @@
 /**
- * CAMPOS DE ESTUDIO — perfiles metodológicos (BORRADOR).
+ * CAMPOS DE ESTUDIO — perfiles exploratorios.
  *
  * Esto NO es el catálogo académico. Son áreas de estudio genéricas con un
  * perfil de facetas que el motor usa para encontrar afinidades. No contienen
@@ -7,9 +7,10 @@
  * viven únicamente en el catálogo verificado (tablas careers / programs),
  * cargados desde fuentes oficiales con fecha de verificación.
  *
- * Los pesos son hipótesis a revisar con orientadores vocacionales.
- * Cuando exista el catálogo verificado, cada campo se vincula a carreras
- * concretas (career.field_id) y el informe muestra dónde estudiarlas.
+ * Los pesos son criterios de trabajo del equipo (no validados psicométricamente);
+ * pueden revisarse más adelante con profesionales, pero no bloquean el MVP.
+ * Cada oferta del catálogo verificado se clasifica en uno o más campos
+ * (src/domain/catalog/classify.ts). Sirven para preseleccionar candidatas.
  */
 import type { FacetKey } from "../methodology/dimensions";
 
@@ -20,7 +21,7 @@ export type StudyField = {
   profile: Partial<Record<FacetKey, number>>; // -1..1
 };
 
-export const STUDY_FIELDS_STATUS = "borrador_metodologico" as const;
+export const STUDY_FIELDS_STATUS = "exploratorio" as const;
 
 export const STUDY_FIELDS: StudyField[] = [
   { id: "sistemas", name: "Sistemas e informática", summary: "Programación, arquitectura de software, redes y cómo diseñar sistemas que funcionen a escala.",
@@ -87,4 +88,18 @@ export const STUDY_FIELDS: StudyField[] = [
     profile: { "vida.viajes": 0.9, "vida.publico": 0.7, "mod.organizar": 0.6, "int.negocios": 0.4, "hab.interpersonal": 0.5, "acad.corta": 0.3 } },
   { id: "gastronomia", name: "Gastronomía", summary: "Cocina profesional, técnicas, gestión y creación de propuestas gastronómicas.",
     profile: { "mod.construir": 0.7, "mod.crear": 0.7, "hab.manual": 0.7, "acad.practica": 1, "acad.corta": 0.5, "vida.flexible": 0.2, "pref.equipo": 0.4 } },
+  { id: "agro_veterinaria", name: "Agro, veterinaria y producción de alimentos", summary: "Producción agropecuaria, salud animal, agroalimentos y paisaje.",
+    profile: { "int.ciencias_naturales": 0.9, "vida.aire_libre": 0.8, "val.sustentabilidad": 0.5, "mod.construir": 0.4, "int.negocios": 0.3, "acad.practica": 0.5 } },
+  { id: "farmacia_bioquimica", name: "Farmacia y bioquímica", summary: "Medicamentos, análisis clínicos y química aplicada a la salud.",
+    profile: { "int.salud": 0.8, "int.ciencias_naturales": 0.8, "mod.analizar": 0.8, "pref.estructura": 0.5, "acad.practica": 0.4, "val.cuidado": 0.4 } },
+  { id: "salud_profesiones", name: "Otras profesiones de la salud", summary: "Obstetricia, fonoaudiología, terapia ocupacional, imágenes, instrumentación y otras áreas clínicas y técnicas.",
+    profile: { "int.salud": 1, "mod.ayudar": 0.7, "val.cuidado": 0.7, "acad.practica": 0.7, "hab.manual": 0.4, "acad.corta": 0.3 } },
+  { id: "idiomas", name: "Idiomas y traducción", summary: "Lenguas extranjeras, traducción e interpretación.",
+    profile: { "hab.verbal": 1, "acad.escritura": 0.8, "int.humanidades": 0.6, "vida.flexible": 0.4, "vida.viajes": 0.4, "pref.estructura": 0.3 } },
+  { id: "diseno_moda", name: "Diseño de indumentaria, textil y moda", summary: "Diseño de ropa y textiles, producción y comunicación de moda.",
+    profile: { "int.arte_diseno": 1, "mod.crear": 0.9, "hab.visual": 0.8, "mot.expresion": 0.7, "hab.manual": 0.5, "int.negocios": 0.3 } },
+  { id: "artes_escenicas", name: "Artes escénicas", summary: "Actuación, circo, artes performáticas y producción de espectáculos.",
+    profile: { "int.arte_diseno": 0.8, "mot.expresion": 1, "vida.publico": 0.8, "pref.equipo": 0.5, "hab.verbal": 0.4, "acad.practica": 0.7 } },
+  { id: "ing_quimica_alimentos", name: "Ingenierías química, de alimentos y de procesos", summary: "Transformar materias primas en productos: química industrial, alimentos, energía.",
+    profile: { "int.ingenieria": 0.8, "int.ciencias_naturales": 0.6, "int.ciencias_exactas": 0.6, "mod.analizar": 0.7, "acad.matematica": 0.8, "mod.organizar": 0.4, "acad.corta": -0.4 } },
 ];

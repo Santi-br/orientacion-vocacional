@@ -3,7 +3,8 @@ import { nextStep, LIMITS } from "../methodology/engine";
 import { QUESTION_BANK } from "../methodology/question-bank";
 import { FACET_KEYS, isFacetKey } from "../methodology/dimensions";
 import { buildReport } from "../report/build-report";
-import { STUDY_FIELDS } from "../catalog/study-fields.draft";
+import { STUDY_FIELDS } from "../catalog/study-fields";
+import { CAREER_BY_ID } from "../catalog/catalog";
 import type { Answer, Item, Onboarding, ResponseRecord } from "../methodology/types";
 
 /** Persona simulada: elige siempre la opción que más suma a sus facetas favoritas. */
@@ -14,7 +15,8 @@ function simulate(prefs: Record<string, number>, onboarding: Onboarding) {
 
   for (let guard = 0; guard < 80; guard++) {
     const { step } = nextStep(responses, onboarding, { allowOpen: false, canGenerate: false });
-    if (step.type !== "item") break;
+    if (step.type === "done") break;
+    if (step.type === "plan") throw new Error("plan sin IA");
     responses.push({ itemId: step.item.id, itemVersion: 1, answer: answerFor(step.item, affinity) });
   }
   return responses;
@@ -75,12 +77,45 @@ describe("motor adaptativo", () => {
     expect(b.some((id) => id === "deep-salud-lugar")).toBe(true);
   });
 
-  it("recomienda áreas coherentes con el perfil, sin porcentajes", () => {
+  it("pregunta si un interés fuerte es pasatiempo o vocación", () => {
+    const r = simulate({ "int.arte_diseno": 1, "mod.crear": 1, "mot.expresion": 1 }, base);
+    expect(r.some((x) => x.itemId === "hob-int.arte_diseno")).toBe(true);
+  });
+
+  it("sin IA recomienda carreras reales del catálogo, coherentes y explicadas", () => {
     const r = simulate({ "int.salud": 1, "mod.ayudar": 1, "val.cuidado": 1, "hab.interpersonal": 0.8 }, base);
     const report = buildReport(r, base);
-    const ids = report.principal.map((m) => m.field.id);
-    expect(ids.some((id) => ["medicina", "enfermeria", "psicologia"].includes(id))).toBe(true);
-    expect(report.principal.length).toBeGreaterThanOrEqual(3);
-    for (const m of report.principal) expect(m.reasons.length).toBeGreaterThan(0);
+    const names = report.principal.map((m) => m.careerId);
+    expect(names.some((id) => ["medicina", "enfermeria", "psicologia"].includes(id))).toBe(true);
+    expect(report.principal.length).toBeGreaterThanOrEqual(4);
+    for (const m of report.principal) {
+      expect(CAREER_BY_ID.has(m.careerId)).toBe(true);
+      expect(m.institutions.length).toBeGreaterThan(0);
+      expect(m.matchingInterests.length).toBeGreaterThan(0);
+      expect(m.institutions.every((i) => i.programs.every((p) => p.source.startsWith("https://")))).toBe(true);
+    }
+  });
+});
+
+describe("validación del estado", () => {
+  it("acepta respuestas a preguntas generadas y señales parciales", async () => {
+    const { AssessmentStateSchema } = await import("../methodology/schemas");
+    const ok = AssessmentStateSchema.safeParse({
+      onboarding: base,
+      responses: [{
+        itemId: "gen-1", itemVersion: 1, answer: { kind: "choice", optionIds: ["a"] },
+        derived: { signals: { "int.tecnologia": 1 }, themes: ["videojuegos"] },
+        generatedItem: {
+          id: "gen-1", version: 1, dimension: "intereses", kind: "deep", format: "scenario", generated: true,
+          prompt: "Te invitan a un hackatón. ¿Qué rol tomás?",
+          options: [
+            { id: "a", label: "Programo", signals: { "int.tecnologia": 1 } },
+            { id: "b", label: "Diseño", signals: {} },
+            { id: "c", label: "Presento", signals: { "mod.persuadir": 1 } },
+          ],
+        },
+      }],
+    });
+    expect(ok.success).toBe(true);
   });
 });

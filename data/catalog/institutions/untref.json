@@ -1,0 +1,39 @@
+{
+  "id": "untref",
+  "name": "Universidad Nacional de Tres de Febrero",
+  "shortName": "UNTREF",
+  "sector": "publica",
+  "kind": "universidad",
+  "website": "https://www.untref.edu.ar",
+  "status": "parcial",
+  "verifiedAt": "2026-11-10",
+  "notes": [
+    "Listado de untref.edu.ar/carreras. La página no indica modalidad (presencial o virtual), duración ni título.",
+    "La página de sedes solo muestra direcciones de rectorado y posgrado; las sedes de dictado por carrera están pendientes."
+  ],
+  "campuses": [
+    { "name": "Rectorado", "address": "Mosconi 2736, Sáenz Peña", "zone": "gba_oeste", "role": "rectorado", "source": "https://www.untref.edu.ar/sedes" },
+    { "name": "Rectorado", "address": "Juncal 1319, CABA", "zone": "caba", "role": "rectorado", "source": "https://www.untref.edu.ar/sedes" }
+  ],
+  "units": [
+    { "name": "Carreras de grado", "kind": "listado", "source": "https://www.untref.edu.ar/carreras", "programs": [
+      "Licenciatura en Relaciones Comerciales Internacionales", "Licenciatura en Logística",
+      "Licenciatura en Administración de Empresas", "Licenciatura en Administración Pública",
+      "Licenciatura en Administración y Gestión de Políticas Sociales", "Licenciatura en Letras",
+      "Licenciatura en Producción Audiovisual", "Licenciatura en Música Autóctona, Clásica y Popular de América",
+      "Licenciatura en Música", "Artes del Circo", "Licenciatura en Artes Electrónicas",
+      "Licenciatura en Gestión del Arte y la Cultura", "Licenciatura en Historia",
+      "Licenciatura en Sistemas de Información Geográfica", "Licenciatura en Estadística y Ciencias de Datos",
+      "Licenciatura en Geografía", "Licenciatura en Psicomotricidad", "Licenciatura en Enfermería",
+      "Licenciatura en Higiene y Seguridad del Trabajo", "Licenciatura en Protección Civil y Emergencias",
+      "Licenciatura en Nutrición", "Ingeniería de Sonido", "Ingeniería en Computación", "Ingeniería Ambiental",
+      "Profesorado en Geografía", "Profesorado en Historia", "Profesorado en Letras",
+      "Instrumentación Quirúrgica (Ciclo de Complementación)", "Educación Secundaria (Ciclo de Complementación)",
+      "Historia (Ciclo de Complementación)", "Licenciatura en Gestión Educativa",
+      "Gestión del Deporte (Ciclo de complementación)", "Licenciatura en Geografía (Complementación)",
+      "Licenciatura en Ciencias de la Educación",
+      "Licenciatura en Resolución de Conflictos y Mediación (Ciclo de Complementación)",
+      "Licenciatura en Música Autóctona, Clásica y Popular de América (Ciclo de Complementación)"
+    ] }
+  ]
+}

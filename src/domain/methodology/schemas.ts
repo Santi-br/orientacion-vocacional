@@ -1,9 +1,11 @@
 /** Validación de todo lo que entra desde el cliente. */
 import { z } from "zod";
-import { FACET_KEYS, INTEREST_FACETS, type FacetKey } from "./dimensions";
+import { DIMENSIONS, FACET_KEYS, INTEREST_FACETS, type DimensionId, type FacetKey } from "./dimensions";
 
 const facetKey = z.enum(FACET_KEYS as [FacetKey, ...FacetKey[]]);
-const signals = z.record(facetKey, z.number().min(-2).max(2));
+// partialRecord: en Zod 4, z.record con claves enum exige TODAS las claves.
+const signals = z.partialRecord(facetKey, z.number().min(-2).max(2));
+const dimension = z.enum(DIMENSIONS.map((d) => d.id) as [DimensionId, ...DimensionId[]]);
 
 export const OnboardingSchema = z.object({
   edad: z.enum(["15", "16", "17", "18", "otra"]),
@@ -20,28 +22,49 @@ const AnswerSchema = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("skip") }),
 ]);
 
-const GeneratedItemSchema = z.object({
+/** Preguntas generadas por IA: viajan con el estado para poder interpretarse. */
+const genBase = {
   id: z.string().regex(/^gen-\d+$/),
   version: z.literal(1),
-  dimension: z.enum(["intereses", "motivaciones", "valores"]),
+  dimension,
   kind: z.literal("deep"),
-  format: z.literal("open"),
   prompt: z.string().min(10).max(240),
-  generated: z.literal(true),
+  helper: z.string().max(160).optional(),
   probes: z.array(facetKey).max(3).optional(),
-});
+  generated: z.literal(true),
+};
+const GeneratedItemSchema = z.discriminatedUnion("format", [
+  z.object({
+    ...genBase,
+    format: z.enum(["single", "scenario"]),
+    options: z
+      .array(z.object({ id: z.string().max(2), label: z.string().min(1).max(120), signals: signals.optional() }))
+      .min(3)
+      .max(6),
+  }),
+  z.object({ ...genBase, format: z.literal("likert"), signals }),
+  z.object({ ...genBase, format: z.literal("open"), placeholder: z.string().max(120).optional() }),
+]);
 
 export const ResponseSchema = z.object({
   itemId: z.string().max(40),
   itemVersion: z.number().int().positive(),
   answer: AnswerSchema,
-  derived: z.object({ signals, themes: z.array(z.string().max(40)).max(5) }).optional(),
+  derived: z.object({ signals, themes: z.array(z.string().max(80)).max(5) }).optional(),
   generatedItem: GeneratedItemSchema.optional(),
+});
+
+export const TraceSchema = z.object({
+  task: z.string().max(40),
+  model: z.string().max(60),
+  promptVersion: z.string().max(20),
+  ok: z.boolean(),
 });
 
 export const AssessmentStateSchema = z.object({
   onboarding: OnboardingSchema,
   responses: z.array(ResponseSchema).max(60),
+  aiTrace: z.array(TraceSchema).max(80).optional(),
 });
 
 export type AssessmentState = z.infer<typeof AssessmentStateSchema>;

@@ -1,15 +1,15 @@
 /**
  * Dimensiones y facetas de la metodología.
  *
- * ESTADO: borrador interno (v0.1.0-draft). No es un instrumento psicométrico
- * validado. Las facetas son categorías de trabajo para ordenar la evidencia de
- * las respuestas; deben revisarse con profesionales de orientación vocacional
- * y psicometría antes de cualquier uso real. Ver docs/METHODOLOGY.md.
+ * ESTADO: metodología exploratoria asistida por IA (v0.2.0). No es un instrumento psicométrico
+ * validado ni un diagnóstico. Las facetas son categorías de trabajo para ordenar la evidencia de
+ * las respuestas. Una revisión profesional futura es posible, pero no es requisito del MVP.
+ * Ver docs/METHODOLOGY.md.
  *
  * Las facetas NO son etiquetas: una persona puede puntuar alto en muchas.
  */
 
-export const METHODOLOGY_VERSION = "0.1.0-draft";
+export const METHODOLOGY_VERSION = "0.2.0";
 
 export const DIMENSIONS = [
   { id: "intereses", label: "Intereses", short: "Qué te atrae" },

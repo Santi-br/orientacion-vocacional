@@ -1,0 +1,18 @@
+{
+  "id": "unsam",
+  "name": "Universidad Nacional de San Martín",
+  "shortName": "UNSAM",
+  "sector": "publica",
+  "kind": "universidad",
+  "website": "https://www.unsam.edu.ar",
+  "status": "pendiente",
+  "verifiedAt": "2026-11-10",
+  "notes": [
+    "El sitio oficial rechazó las consultas automatizadas el 10/11/2026 (unsam.edu.ar/oferta/carreras/ y otras páginas).",
+    "La página de listado de carreras (unsam.edu.ar/estudiantes/guia/listado-carreras.php) solo muestra tipos de título por escuela, sin nombres: no alcanza para cargar carreras.",
+    "Escuelas e institutos con oferta de grado o pregrado según esa página: Escuela de Ciencia y Tecnología, Escuela de Economía y Negocios, Escuela de Humanidades, Escuela de Política y Gobierno, Escuela IDAES, Instituto de Calidad Industrial, Instituto de Rehabilitación y Movimiento, Instituto Dan Beninson, Instituto de Tecnología Prof. Jorge Sabato, OESPU, Escuela de Arte y Patrimonio, Escuela de Hábitat y Sostenibilidad, Escuela de Bio y Nanotecnologías.",
+    "Verificación manual necesaria antes de incluir carreras."
+  ],
+  "campuses": [],
+  "units": []
+}

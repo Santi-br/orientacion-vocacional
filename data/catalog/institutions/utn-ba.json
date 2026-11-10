@@ -1,0 +1,27 @@
+{
+  "id": "utn-ba",
+  "name": "Universidad Tecnológica Nacional — Facultad Regional Buenos Aires",
+  "shortName": "UTN.BA",
+  "sector": "publica",
+  "kind": "universidad",
+  "website": "https://www.frba.utn.edu.ar",
+  "status": "parcial",
+  "verifiedAt": "2026-11-10",
+  "notes": [
+    "El sitio frba.utn.edu.ar no respondió durante la verificación del 10/11/2026.",
+    "Las ingenierías se tomaron de la tabla oficial de carreras acreditadas por CONEAU publicada por UTN (rectorado). La tabla nombra la carrera abreviada (p. ej. 'Civil'); el nombre completo se reconstruyó como 'Ingeniería …' y debe confirmarse en frba.utn.edu.ar.",
+    "Ingeniería Naval figura como 'INGRESA' (sin resolución de acreditación).",
+    "Puede haber más oferta (licenciaturas, tecnicaturas) no incluida en esa tabla: pendiente.",
+    "Sedes, duración, títulos, modalidad e ingreso: pendientes."
+  ],
+  "campuses": [],
+  "units": [
+    { "name": "Facultad Regional Buenos Aires", "kind": "facultad_regional",
+      "source": "https://www2.utn.edu.ar/images/UVYT2026/AUDITORIA/Tabla-de-carreras-acreditadas-CONEAU.pdf",
+      "programs": [
+        "Ingeniería Civil", "Ingeniería Electrónica", "Ingeniería en Energía Eléctrica",
+        "Ingeniería en Sistemas de Información", "Ingeniería Industrial", "Ingeniería Mecánica",
+        "Ingeniería Naval", "Ingeniería Química"
+      ] }
+  ]
+}

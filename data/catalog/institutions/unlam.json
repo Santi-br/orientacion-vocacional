@@ -1,0 +1,16 @@
+{
+  "id": "unlam",
+  "name": "Universidad Nacional de La Matanza",
+  "shortName": "UNLaM",
+  "sector": "publica",
+  "kind": "universidad",
+  "website": "https://www.unlam.edu.ar",
+  "status": "pendiente",
+  "verifiedAt": "2026-11-10",
+  "notes": [
+    "El sitio oficial rechazó las consultas automatizadas el 10/11/2026.",
+    "No se cargan carreras desde fuentes no oficiales. Verificación manual necesaria."
+  ],
+  "campuses": [],
+  "units": []
+}

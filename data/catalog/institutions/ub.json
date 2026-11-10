@@ -1,0 +1,46 @@
+{
+  "id": "ub",
+  "name": "Universidad de Belgrano",
+  "shortName": "UB",
+  "sector": "privada",
+  "kind": "universidad",
+  "website": "https://www.ub.edu.ar",
+  "status": "parcial",
+  "verifiedAt": "2026-11-10",
+  "notes": [
+    "Listado de ub.edu.ar/distribucion-carreras-de-grado. Los encabezados son áreas del sitio, no necesariamente facultades.",
+    "Las tecnicaturas universitarias están en otra página (ub.edu.ar/distribucion-tecnicaturas-universitarias): pendientes.",
+    "Modalidad, sede por carrera y duración: pendientes."
+  ],
+  "campuses": [
+    { "name": "Torre Universitaria", "address": "Zabala 1837, CABA", "zone": "caba", "role": "sede", "source": "https://www.ub.edu.ar/sedes-universidad-de-belgrano" },
+    { "name": "Sede Villanueva", "address": "Villanueva 1324, CABA", "zone": "caba", "role": "sede", "source": "https://www.ub.edu.ar/sedes-universidad-de-belgrano" }
+  ],
+  "units": [
+    { "name": "Humanidades", "kind": "area", "source": "https://www.ub.edu.ar/distribucion-carreras-de-grado", "programs": ["PSICOLOGÍA"] },
+    { "name": "Arquitectura y Urbanismo", "kind": "area", "source": "https://www.ub.edu.ar/distribucion-carreras-de-grado", "programs": ["ARQUITECTURA", "DISEÑO DE INTERIORES"] },
+    { "name": "Derecho", "kind": "area", "source": "https://www.ub.edu.ar/distribucion-carreras-de-grado", "programs": ["ABOGACÍA"] },
+    { "name": "Ciencias Económicas", "kind": "area", "source": "https://www.ub.edu.ar/distribucion-carreras-de-grado", "programs": [
+      "LICENCIATURA EN ADMINISTRACIÓN", "CONTADOR PÚBLICO", "LICENCIATURA EN COMERCIALIZACIÓN (MARKETING)",
+      "LICENCIATURA EN ECONOMÍA", "LICENCIATURA EN COMERCIO EXTERIOR (GLOBAL BUSINESS)",
+      "LICENCIATURA EN ADMINISTRACIÓN Y GESTIÓN DE AGRONEGOCIOS"
+    ] },
+    { "name": "Diseño y Comunicación", "kind": "area", "source": "https://www.ub.edu.ar/distribucion-carreras-de-grado", "programs": [
+      "CIENCIAS DE LA COMUNICACIÓN", "DISEÑO GRÁFICO: DISEÑO EN COMUNICACIÓN VISUAL, GRÁFICA Y DIGITAL",
+      "PRODUCCIÓN Y DIRECCIÓN DE CONTENIDOS AUDIOVISUALES", "PUBLICIDAD", "RELACIONES PÚBLICAS E INSTITUCIONALES"
+    ] },
+    { "name": "Política y Relaciones Internacionales", "kind": "area", "source": "https://www.ub.edu.ar/distribucion-carreras-de-grado", "programs": [
+      "CIENCIA POLÍTICA, GOBIERNO Y ADMINISTRACIÓN", "RELACIONES INTERNACIONALES"
+    ] },
+    { "name": "Ciencias de la Salud", "kind": "area", "source": "https://www.ub.edu.ar/distribucion-carreras-de-grado", "programs": ["NUTRICIÓN"] },
+    { "name": "Hotelería, Gastronomía y Turismo", "kind": "area", "source": "https://www.ub.edu.ar/distribucion-carreras-de-grado", "programs": [
+      "LICENCIATURA EN HOTELERÍA", "LICENCIATURA EN GASTRONOMÍA"
+    ] },
+    { "name": "Ingeniería y Tecnología", "kind": "area", "source": "https://www.ub.edu.ar/distribucion-carreras-de-grado", "programs": ["INGENIERÍA EN INFORMÁTICA"] },
+    { "name": "Ciencias Exactas y Naturales", "kind": "area", "source": "https://www.ub.edu.ar/distribucion-carreras-de-grado", "programs": ["FARMACIA"] },
+    { "name": "Lenguas y Estudios Extranjeros", "kind": "area", "source": "https://www.ub.edu.ar/distribucion-carreras-de-grado", "programs": [
+      "TRADUCTORADO PÚBLICO, LITERARIO Y CIENTÍFICO-TÉCNICO DE INGLÉS", "LICENCIATURA EN LENGUA INGLESA",
+      "CICLO DE TRADUCTORADO PÚBLICO DE INGLÉS"
+    ] }
+  ]
+}

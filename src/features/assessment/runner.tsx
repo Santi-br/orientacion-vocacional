@@ -3,7 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import type { Answer, Item, OpenItem, ResponseRecord } from "@/domain/methodology/types";
+import type { Answer, Item, ResponseRecord } from "@/domain/methodology/types";
+import type { AITrace } from "@/domain/report/types";
 import { CARE_RESOURCES } from "./care-resources";
 import { FlowShell } from "./flow-shell";
 import { QuestionView } from "./question-view";
@@ -15,6 +16,7 @@ type NextResponse = {
   step: { type: "item"; item: Item; reason: string } | { type: "done" };
   progress: Progress;
   wellbeing: boolean;
+  trace: AITrace[];
 };
 
 export function Runner() {
@@ -36,7 +38,11 @@ export function Runner() {
         });
         if (!res.ok) throw new Error(String(res.status));
         const data = (await res.json()) as NextResponse;
-        const next: SessionState = { ...s, responses: data.responses };
+        const next: SessionState = {
+          ...s,
+          responses: data.responses,
+          aiTrace: [...(s.aiTrace ?? []), ...data.trace].slice(-80),
+        };
         if (data.wellbeing) setCare(true);
         setProgress(data.progress);
         if (data.step.type === "done") {
@@ -85,7 +91,7 @@ export function Runner() {
       itemId: item.id,
       itemVersion: item.version,
       answer: a,
-      ...(item.generated ? { generatedItem: item as OpenItem } : {}),
+      ...(item.generated ? { generatedItem: item } : {}),
     };
     go({ ...session, responses: [...session.responses, rec] });
   }

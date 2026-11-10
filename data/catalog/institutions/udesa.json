@@ -1,0 +1,43 @@
+{
+  "id": "udesa",
+  "name": "Universidad de San Andrés",
+  "shortName": "UdeSA",
+  "sector": "privada",
+  "kind": "universidad",
+  "website": "https://www.udesa.edu.ar",
+  "status": "parcial",
+  "verifiedAt": "2026-11-10",
+  "notes": [
+    "Listado de udesa.edu.ar/carreras-de-grado (18 carreras). La página no indica duración ni título.",
+    "Escuela o departamento tomado de la URL oficial de cada carrera.",
+    "Sedes y direcciones: pendientes (la página de inicio no las muestra)."
+  ],
+  "campuses": [],
+  "units": [
+    { "name": "Escuela de Negocios", "kind": "escuela", "source": "https://www.udesa.edu.ar/carreras-de-grado", "programs": [
+      "Licenciatura en Finanzas", "Licenciatura en Negocios Digitales", "Licenciatura en Administración de Empresas"
+    ] },
+    { "name": "Departamento de Humanidades", "kind": "departamento", "source": "https://www.udesa.edu.ar/carreras-de-grado", "programs": [
+      "Licenciatura en Humanidades", "Licenciatura en Diseño"
+    ] },
+    { "name": "Escuela de Educación", "kind": "escuela", "source": "https://www.udesa.edu.ar/carreras-de-grado", "programs": [
+      "Profesorado en Educación Primaria", "Licenciatura en Ciencias de la Educación"
+    ] },
+    { "name": "Departamento de Ciencias Sociales", "kind": "departamento", "source": "https://www.udesa.edu.ar/carreras-de-grado", "programs": [
+      "Licenciatura en Relaciones Internacionales", "Licenciatura en Ciencia Política y Gobierno", "Licenciatura en Comunicación"
+    ] },
+    { "name": "Departamento de Derecho", "kind": "departamento", "source": "https://www.udesa.edu.ar/carreras-de-grado", "programs": [
+      "Abogacía"
+    ] },
+    { "name": "Departamento de Ciencias de la Vida y del Comportamiento", "kind": "departamento", "source": "https://www.udesa.edu.ar/carreras-de-grado", "programs": [
+      "Licenciatura en Ciencias del Comportamiento"
+    ] },
+    { "name": "Departamento de Economía", "kind": "departamento", "source": "https://www.udesa.edu.ar/carreras-de-grado", "programs": [
+      "Licenciatura en Economía", "Licenciatura en Economía Empresarial"
+    ] },
+    { "name": "Escuela de Ingeniería", "kind": "escuela", "source": "https://www.udesa.edu.ar/carreras-de-grado", "programs": [
+      "Ingeniería en Inteligencia Artificial", "Ingeniería en Biotecnología", "Ingeniería Industrial",
+      "Ingeniería en Tecnologías Sustentables"
+    ] }
+  ]
+}

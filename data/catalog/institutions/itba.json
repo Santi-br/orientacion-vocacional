@@ -1,0 +1,28 @@
+{
+  "id": "itba",
+  "name": "Instituto Tecnológico de Buenos Aires",
+  "shortName": "ITBA",
+  "sector": "privada",
+  "kind": "instituto_universitario",
+  "website": "https://www.itba.edu.ar",
+  "status": "parcial",
+  "verifiedAt": "2026-11-10",
+  "notes": [
+    "Listado de itba.edu.ar/grado (13 carreras), con los nombres abreviados tal como aparecen en el menú (Lic., Ing.).",
+    "La página de sedes describe un nuevo campus en el Parque de Innovación (Núñez) como futura sede única.",
+    "Duración, títulos y sede por carrera: pendientes."
+  ],
+  "campuses": [
+    { "name": "Sede Distrito Financiero", "address": "San Martín 202, CABA", "zone": "caba", "role": "sede", "source": "https://www.itba.edu.ar/la-universidad/institucional/sedes/" },
+    { "name": "Sede Distrito Tecnológico", "address": "Lavardén 315, CABA", "zone": "caba", "role": "sede", "source": "https://www.itba.edu.ar/la-universidad/institucional/sedes/" },
+    { "name": "Sede Rectorado", "address": "Iguazú 341, CABA", "zone": "caba", "role": "sede", "source": "https://www.itba.edu.ar/la-universidad/institucional/sedes/" },
+    { "name": "Nuevo Campus (futuro)", "address": "Parque de Innovación, Núñez, CABA", "zone": "caba", "role": "futura", "source": "https://www.itba.edu.ar/la-universidad/institucional/sedes/" }
+  ],
+  "units": [
+    { "name": "Carreras de grado", "kind": "listado", "source": "https://www.itba.edu.ar/grado/", "programs": [
+      "Lic. en Ciencias del Comportamiento", "Lic. en Analítica (Data Science)", "Ing. Civil", "Ing. Industrial",
+      "Ing. Mecánica", "Ing. en Petróleo", "Ing. en Biotecnología", "Lic. en Negocios y Tecnología",
+      "Ing. Electrónica", "Ing. Informática", "Ing. Naval", "Ing. Química", "Bioingeniería"
+    ] }
+  ]
+}

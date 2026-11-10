@@ -4,8 +4,9 @@
  * evidencia trazable (qué respuesta aportó qué), cobertura por dimensión
  * y tensiones (señales a favor y en contra de una misma faceta).
  *
- * La IA no reemplaza este cálculo: solo aporta señales de respuestas abiertas,
- * validadas contra las facetas conocidas.
+ * Es la base trazable del perfil. La IA (server/ai/profile-analyzer.ts) aporta
+ * señales de respuestas abiertas y una lectura interpretativa encima de esto,
+ * siempre validada contra las facetas conocidas.
  */
 import {
   COVERAGE_TARGET,
@@ -16,6 +17,7 @@ import {
   type FacetKey,
 } from "./dimensions";
 import { ITEM_BY_ID } from "./question-bank";
+import { hobbyItemFromId } from "./hobby";
 import type { Context, Item, Onboarding, ResponseRecord, Signals } from "./types";
 
 export type Evidence = { itemId: string; delta: number; answerLabel: string };
@@ -37,7 +39,7 @@ export type Profile = {
 };
 
 export function resolveItem(r: ResponseRecord): Item | undefined {
-  return r.generatedItem ?? ITEM_BY_ID.get(r.itemId);
+  return r.generatedItem ?? ITEM_BY_ID.get(r.itemId) ?? hobbyItemFromId(r.itemId);
 }
 
 /** Señales + etiqueta legible de una respuesta. */

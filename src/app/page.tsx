@@ -142,8 +142,8 @@ export default function Landing() {
             <div className="rounded-[var(--radius-card)] border border-white/12 p-7 sm:p-9">
               <h3 className="text-[19px] font-semibold">No es</h3>
               <ul className="mt-4 grid gap-3 text-[15.5px] leading-relaxed text-[var(--text-muted)]">
-                <li>Un diagnóstico psicológico.</li>
-                <li>Un test validado científicamente. La metodología se está revisando con profesionales de orientación vocacional.</li>
+                <li>Un diagnóstico psicológico ni un test psicométrico validado.</li>
+                <li>Un reemplazo de la orientación con un profesional. Es una exploración asistida por IA.</li>
                 <li>Una decisión. Elegir sigue siendo tuyo.</li>
               </ul>
             </div>
@@ -165,7 +165,7 @@ export default function Landing() {
       <footer className="bg-graphite-deep px-5 py-10 text-[13px] text-[var(--text-faint)] sm:px-8">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <Wordmark className="text-[var(--text-muted)]" />
-          <p>Versión de prueba. Metodología en revisión profesional.</p>
+          <p>Versión de prueba. Exploración vocacional asistida por IA.</p>
           <Link href="/privacidad" className="hover:text-frost">Cómo cuidamos tus datos</Link>
         </div>
       </footer>

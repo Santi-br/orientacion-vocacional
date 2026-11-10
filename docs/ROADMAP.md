@@ -1,43 +1,68 @@
-# Roadmap, riesgos y decisiones pendientes
+# Roadmap, hitos y riesgos
 
-## Etapas
+Actualizado el 10/11/2026 con las decisiones del equipo (ver `DECISIONS.md`, D10–D16).
 
-**Etapa 0 — Bases (hecho)**
-Arquitectura, modelo de datos + RLS, sistema de diseño, landing, onboarding, test adaptativo v1, motor de afinidad explicable, prototipo de informe con PDF por impresión, tests del motor.
+**Ya no son bloqueos del MVP:** la contratación de psicólogos para la metodología y la de abogados para seguir desarrollando. La revisión profesional queda como posibilidad futura. La revisión legal es **obligatoria antes del lanzamiento público**.
 
-**Etapa 1 — Listo para piloto (próximo)**
-1. Revisión metodológica con profesionales (ítems, pesos, perfiles de áreas, cierre).
-2. Catálogo verificado de 8–10 instituciones (ver `CATALOG.md`) y sección "Dónde estudiarla".
-3. Revisión legal de privacidad y consentimiento para menores.
-4. Fotografía cinematográfica propia (ver `DESIGN.md`).
-5. Rate limiting, logging de errores, deploy en Vercel con dominio de prueba.
-6. Encuesta corta al final del informe para medir lo del piloto.
+## Hitos (en el orden de prioridad acordado)
 
-**Etapa 2 — Piloto con 20–30 estudiantes**
-Cuentas opcionales (Supabase Auth con link mágico), guardar resultados, Mi recorrido (historial y favoritos), PDF generado en servidor, métricas: finalización, tiempo, abandono por pregunta, identificación con resultados, descubrimientos, utilidad y confianza.
+| # | Hito | Estado |
+|---|---|---|
+| 1 | Arquitectura y estructura técnica | ✅ Hecho. Next.js 16 + TS, dominio puro testeado, Supabase con RLS (migraciones 0001–0002 probadas contra Postgres). |
+| 2 | Sistema de diseño y experiencia visual | ✅ Base hecha (tokens, horizonte, vidrio, tipografía). Pendiente: fotografía cinematográfica propia. |
+| 3 | Metodología exploratoria del test | ✅ v0.2.0 asistida por IA. **Siguiente:** correr 10–15 evaluaciones internas con clave real y ajustar prompts. |
+| 4 | Motor de preguntas adaptativas | ✅ Reglas + planificador con IA (elige del banco o genera), pasatiempo vs. vocación, tensiones. |
+| 5 | Catálogo académico verificado | 🟡 Primera tanda: 9 de 11 instituciones con oferta cargada (365 ofertas, 248 carreras). **Siguiente:** UNSAM y UNLaM (manual), UTN.BA completa, datos por carrera (título, duración, modalidad, ingreso). |
+| 6 | Motor de recomendaciones | ✅ IA sobre catálogo verificado, con respaldo por reglas. **Siguiente:** compatibilidad práctica completa cuando haya sedes y modalidad por carrera. |
+| 7 | Informe personalizado | ✅ Web + PDF por impresión. **Siguiente:** ficha de carrera, comparador, PDF generado en servidor. |
+| 8 | Registro, historial y seguimiento | ⏳ Esquema listo (cuentas, guardado, borrado de datos). Falta la UI: Supabase Auth, Mi recorrido, favoritos. |
 
-**Etapa 3 — Producto**
-Fichas de carrera completas, comparador de carreras e instituciones, panel admin (catálogo, preguntas versionadas, fuentes), analytics, terciarios y tecnicaturas, ampliación geográfica.
+### Antes de las pruebas controladas (20–30 estudiantes)
+
+- Clave de OpenAI y 10–15 corridas internas para calibrar.
+- Catálogo: completar al menos título y duración de las carreras que más aparecen.
+- Encuesta breve al final del informe (identificación, descubrimiento, utilidad, confianza).
+- Métricas: finalización, tiempo, abandono por pregunta.
+- Rate limiting en `/api/assessment/*`.
+- Deploy en Vercel con acceso restringido (no indexado, link privado).
+- Consentimiento informado para la prueba: qué se hace con los datos, uso de IA, y aviso a un adulto responsable en menores. Para una prueba controlada se diseña con criterio prudente; la validación legal llega en el hito obligatorio previo al lanzamiento.
+
+### Hito obligatorio antes del lanzamiento público
+
+**Revisión legal con asesoramiento especializado en Argentina.** Debe cubrir:
+
+- Ley 25.326 y normativa complementaria.
+- Consentimiento según edad.
+- Intervención de responsables parentales cuando corresponda.
+- Protección de datos de menores.
+- Uso de inteligencia artificial.
+- Transferencias internacionales de datos (OpenAI, Supabase, Vercel).
+- Política de privacidad y términos y condiciones.
+- Derechos de acceso, rectificación y eliminación.
+
+No se asumen requisitos legales definitivos sin ese asesoramiento.
+
+### Posibilidad futura (no requisito)
+
+Revisión de la metodología por un psicólogo especializado en orientación vocacional.
 
 ## Riesgos
 
 | Riesgo | Impacto | Mitigación |
 |---|---|---|
-| Metodología percibida como "científica" sin serlo | Alto | Avisos explícitos, revisión profesional antes del piloto, niveles cualitativos |
-| Datos académicos desactualizados o incorrectos | Alto | Fuente + fecha obligatorias, doble revisión, estado `desactualizado` |
-| Datos de menores | Alto | Minimización, visitantes sin persistencia, revisión legal, RLS |
-| Respuestas que revelan malestar | Alto | Aviso con recursos; definir protocolo con profesionales |
-| IA que inventa o induce | Medio | La IA no decide ni agrega datos; salida validada; preguntas generadas acotadas |
-| Sesgos (género, nivel socioeconómico) en ítems y recomendaciones | Medio | Revisión de redacción; el contexto nunca descarta; métricas por segmento en el piloto |
-| Test largo → abandono | Medio | 25–32 preguntas típicas; medir abandono por ítem en el piloto |
-| Costo de IA y abuso de la API | Medio | Rate limiting, IA opcional, modelos chicos |
-| Carga del catálogo es mucho trabajo manual | Medio | Empezar acotado; herramientas de extracción asistida con revisión humana |
+| Que la herramienta se lea como diagnóstico o test científico | Alto | Avisos en landing, onboarding e informe; niveles cualitativos; prompts con alcance explícito |
+| Datos académicos desactualizados o incompletos | Alto | Fuente y fecha por dato, pendientes visibles, revisión periódica |
+| Datos de menores | Alto | Minimización, visitantes sin persistencia, nada identificable hacia la IA, RLS, borrado; revisión legal antes del lanzamiento |
+| IA que inventa carreras o datos | Alto | IDs como `enum` en el esquema; datos institucionales agregados desde el catálogo; tests |
+| Calidad de las preguntas generadas | Medio | Validación estricta, tope de 8, respaldo del banco; revisar transcripts del piloto |
+| Sesgos (género, nivel socioeconómico) | Medio | Contexto nunca descarta; prompts sin estereotipos; métricas por segmento en el piloto |
+| Latencia del informe (3 llamadas, una con razonamiento) | Medio | Pantalla de análisis por etapas; modelo rápido para tareas simples; medir y ajustar esfuerzo |
+| Costo de IA | Bajo | ~US$0,10–0,20 por evaluación (estimado); rate limiting |
+| Sitios oficiales que bloquean el relevamiento automático | Medio | Relevamiento manual (UNSAM, UNLaM) |
+| Catálogo sesgado a las instituciones cargadas | Medio | Segunda tanda de 10 instituciones; mostrar qué falta |
 
-## Decisiones pendientes (necesitan tu input)
+## Decisiones abiertas (te consulto cuando lleguemos)
 
-1. **Profesionales de orientación**: ¿quién revisa la metodología y cuándo?
-2. **Modelo de IA**: proveedor y modelo para `OPENAI_MODEL` (o evaluar otro proveedor), según costo y términos de datos.
-3. **Primeras instituciones** a verificar para el piloto.
-4. **Asesoría legal** para consentimiento de menores y política de retención.
-5. **Cómo se recluta el piloto** (colegios, redes, conocidos) — define si hace falta consentimiento institucional.
-6. **Fotografía**: producción propia o banco con licencia.
+- Proveedor de login para el hito 8 (link mágico por mail vs. Google) y si pedimos mail a menores.
+- Cómo se recluta el piloto (colegios o contactos), porque cambia el diseño del consentimiento.
+- Fotografía: producción propia o banco con licencia.

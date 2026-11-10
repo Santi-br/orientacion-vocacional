@@ -1,0 +1,78 @@
+{
+  "id": "up",
+  "name": "Universidad de Palermo",
+  "shortName": "UP",
+  "sector": "privada",
+  "kind": "universidad",
+  "website": "https://www.palermo.edu",
+  "status": "parcial",
+  "verifiedAt": "2026-11-10",
+  "notes": [
+    "Listado de palermo.edu/indice-carreras-grado.html. Algunas carreras aparecen en más de una facultad.",
+    "La página separa modalidad online y presencial/combinada, pero la herramienta de verificación no conservó qué carrera va en cada una: modalidad pendiente.",
+    "Bajo 'Facultad de Arquitectura' la página no lista carreras; Arquitectura figura en Diseño y Comunicación.",
+    "La página de sedes indica 10 sedes pero lista 9; sede por carrera pendiente."
+  ],
+  "campuses": [
+    { "name": "Sede Mario Bravo 1050", "address": "Mario Bravo 1050, CABA", "zone": "caba", "role": "sede", "source": "https://www.palermo.edu/sedes/" },
+    { "name": "Sede Cabrera 3507", "address": "Cabrera 3507, CABA", "zone": "caba", "role": "sede", "source": "https://www.palermo.edu/sedes/" },
+    { "name": "Sede Ecuador 931", "address": "Ecuador 931, CABA", "zone": "caba", "role": "sede", "source": "https://www.palermo.edu/sedes/" },
+    { "name": "Sede Jean Jaurés 932/6", "address": "Jean Jaurés 932/6, CABA", "zone": "caba", "role": "sede", "source": "https://www.palermo.edu/sedes/" },
+    { "name": "Sede Larrea 1079", "address": "Larrea 1079, CABA", "zone": "caba", "role": "sede", "source": "https://www.palermo.edu/sedes/" },
+    { "name": "Sede Mario Bravo 1302", "address": "Mario Bravo 1302, CABA", "zone": "caba", "role": "sede", "source": "https://www.palermo.edu/sedes/" },
+    { "name": "Sede Mario Bravo 1259", "address": "Mario Bravo 1259, CABA", "zone": "caba", "role": "sede", "source": "https://www.palermo.edu/sedes/" },
+    { "name": "Sede Cabrera 3641", "address": "Cabrera 3641, CABA", "zone": "caba", "role": "sede", "source": "https://www.palermo.edu/sedes/" }
+  ],
+  "units": [
+    { "name": "Facultad de Negocios", "kind": "facultad", "source": "https://www.palermo.edu/indice-carreras-grado.html", "programs": [
+      "Licenciatura en Ciencias del Comportamiento", "Licenciatura en Marketing", "Licenciatura en Management: Inteligencia Artificial",
+      "Licenciatura en Negocios Digitales", "Licenciatura en Management de la Innovación y Startups",
+      "Licenciatura en Management: Economía y Finanzas", "Licenciatura en Management: Gestión Deportiva",
+      "Licenciatura en Administración", "Licenciatura en Comercialización: Marketing y Publicidad", "Contador Público",
+      "Licenciatura en Comercio Internacional", "Licenciatura en Recursos Humanos",
+      "Licenciatura en Management en Turismo y Hospitalidad", "Licenciatura en Administración de Sistemas y Empresas",
+      "Carrera corta: Comercialización y Dirección de Empresas", "Licenciatura en Gastronomía",
+      "Licenciatura en Administración de Sistemas y Empresas - Ciclo de Complementación Curricular"
+    ] },
+    { "name": "Facultad de Diseño y Comunicación", "kind": "facultad", "source": "https://www.palermo.edu/indice-carreras-grado.html", "programs": [
+      "Arquitectura", "Actuación Profesional (Actor Profesional)",
+      "Asesoramiento y Gestión de Imagen (Programa conjunto con la Lic. en Relaciones Públicas y Comunicación de Moda)",
+      "Comunicación de Moda",
+      "Dirección de Comunicación (Programa conjunto con la Lic. en Publicidad y la Lic. en Relaciones Públicas)",
+      "Dirección Creativa Publicitaria (Programa conjunto con la Lic. en Publicidad y la Lic. en Dirección de Arte)",
+      "Diseño de Ilustración", "Diseño de Interiores", "Diseño de Moda (Diseño Textil e Indumentaria)",
+      "Diseño de Música y Sonido (Programa conjunto con Lic. en Creación Sonora y Producción Musical)",
+      "Diseño Digital (Diseño de Imagen y Sonido)", "Diseño Gráfico", "Diseño Industrial",
+      "Diseño y Estéticas de la Moda (Programa conjunto con Diseño de Moda y Producción de Modas)",
+      "Diseño y Negocios de la Moda (Programa conjunto con Diseño de Moda y Marketing de la Moda)",
+      "Licenciatura en Comunicación Digital", "Licenciatura en Comunicación Audiovisual", "Licenciatura en Creación Sonora",
+      "Licenciatura en Dirección Cinematográfica", "Licenciatura en Diseño (Diseño + Negocios + Tecnología)",
+      "Licenciatura en Fotografía", "Licenciatura en Publicidad", "Licenciatura en Relaciones Públicas",
+      "Marketing de la Moda", "Organización de Eventos", "Producción de Modas", "Producción Musical",
+      "Proyecto y Construcción de Obras",
+      "Community Management para Emprendedores - Licenciatura en Comunicación Digital - Ciclo de Complementación Curricular",
+      "Licenciatura en Diseño - Ciclo de Complementación Curricular",
+      "Licenciatura en Negocios de Diseño y Comunicación - Ciclo de Complementación Curricular",
+      "Licenciatura en Gestión de Proyectos de Diseño y Comunicación - Ciclo de Complementación Curricular"
+    ] },
+    { "name": "Facultad de Derecho", "kind": "facultad", "source": "https://www.palermo.edu/indice-carreras-grado.html", "programs": [
+      "Abogacía", "Escribanía (Notariado)"
+    ] },
+    { "name": "Facultad de Ciencias Sociales", "kind": "facultad", "source": "https://www.palermo.edu/indice-carreras-grado.html", "programs": [
+      "Crítico Universitario en Arte", "Licenciatura en Arte", "Licenciatura en Ciencias del Comportamiento",
+      "Licenciatura en Humanidades y Ciencias Sociales", "Licenciatura en Periodismo",
+      "Periodismo Deportivo, Licenciatura en Periodismo", "Licenciatura en Psicología",
+      "Licenciatura en Relaciones Internacionales", "Licenciatura en Relaciones Internacionales y Ciencia Política"
+    ] },
+    { "name": "Facultad de Ingeniería", "kind": "facultad", "source": "https://www.palermo.edu/indice-carreras-grado.html", "programs": [
+      "Ingeniería en Inteligencia Artificial", "Ingeniería en Informática", "Ingeniería en Ciencia de Datos",
+      "Ingeniería Industrial", "Ingeniería en Telecomunicaciones", "Ingeniería Electrónica", "Licenciatura en Ciberseguridad",
+      "Licenciatura en Inteligencia Artificial", "Licenciatura en Informática", "Licenciatura en Redes y Comunicación de Datos",
+      "Licenciatura en Administración de Sistemas y Empresas", "Licenciatura en Organización de la Producción",
+      "Licenciatura en Tecnología de la Información", "Analista Universitario en Sistemas",
+      "Licenciatura en Tecnología de la Información - Ciclo de Complementación Curricular",
+      "Licenciatura en Redes y Comunicación de Datos - Ciclo de Complementación Curricular",
+      "Licenciatura en Administración de Sistemas y Empresas - Ciclo de Complementación Curricular"
+    ] }
+  ]
+}

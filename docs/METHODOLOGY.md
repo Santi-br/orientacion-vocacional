@@ -1,49 +1,54 @@
-# Metodología del test — v0.1.0-draft
+# Metodología del test — v0.2.0
 
-> **No es un instrumento validado.** Es un borrador de trabajo del equipo de producto para poder construir y probar el sistema. Antes del piloto con estudiantes debe revisarse con profesionales de orientación vocacional y psicometría. No se presenta como diagnóstico ni como test científico.
+> Herramienta de **exploración y orientación vocacional asistida por IA**. No es un test psicométrico validado, ni un diagnóstico psicológico, ni reemplaza una orientación profesional. Así se presenta en la landing, el onboarding y el informe.
+>
+> Decisión del 10/11/2026: la metodología inicial se desarrolla con IA, sin especialistas externos. Incorporar más adelante a un psicólogo especializado en orientación vocacional queda como posibilidad, no como requisito del MVP.
 
 ## Dimensiones y facetas
 
-8 dimensiones (las del brief). Las 7 primeras se descomponen en **48 facetas** (`src/domain/methodology/dimensions.ts`); "contexto" no puntúa afinidad, solo describe el punto de partida.
+Ocho dimensiones: intereses, personalidad y preferencias, habilidades percibidas, motivaciones, valores, estilo de vida deseado, preferencias académicas, y contexto y posibilidades. Las siete primeras se descomponen en **48 facetas** (`src/domain/methodology/dimensions.ts`). "Contexto" no puntúa afinidad: solo ordena opciones.
 
-Las facetas no son etiquetas: cada una tiene su propio puntaje y una persona puede puntuar alto en muchas.
+Las facetas no son etiquetas: una persona puede puntuar alto en muchas. Sirven como lenguaje común entre las reglas y la IA.
 
-## Ítems
+## Cómo se arma el test
 
-Banco v1: ~50 ítems (`question-bank.ts`) en 7 formatos: opción única, múltiple, situación cotidiana/escenario, escala de identificación (1–5), entre dos polos, abierta y contexto. Cada opción declara **señales**: pesos −2..+2 sobre facetas. No elegir una opción no es evidencia negativa.
+| Capa | Qué aporta |
+|---|---|
+| Banco versionado (~50 ítems) | 7 formatos: opción única, múltiple, escenario, escala de identificación, entre dos polos, abierta, contexto. Cada opción declara señales (±2) sobre facetas. |
+| Profundización | Ítems que solo aparecen cuando un interés supera un umbral (p. ej. tecnología ≥ 0,35). |
+| Pasatiempo o vocación | Para los dos intereses más fuertes: "¿lo disfrutás como pasatiempo o te imaginás trabajando de eso?". La respuesta ajusta el peso vocacional de ese interés. |
+| Tensiones | Si una faceta tiene evidencia fuerte a favor y en contra, se buscan ítems que la aclaren. |
+| **IA (planificador)** | Cada 3 respuestas, y después de cada abierta, decide si conviene una pregunta del banco o **formular una nueva** (opción única, escenario, escala o abierta) para profundizar, aclarar una contradicción o explorar un interés no considerado. |
+| **IA (análisis de abiertas)** | Convierte texto libre en señales sobre facetas, temas y pistas de pasatiempo. |
 
-Tipos de ítem:
-- **opening** (3): iguales para todos, amplios.
-- **core**: cubren dimensiones.
-- **deep**: solo aparecen si un interés ya superó un umbral (p. ej. tecnología ≥ 0,35). Es lo que hace que cada recorrido sea distinto.
-- **probe**: aclaran facetas con señales contradictorias.
+**Duración variable.** El test termina cuando hay al menos 18 respuestas, todas las dimensiones alcanzaron su cobertura mínima, se profundizó en los intereses principales, se preguntó por pasatiempo o vocación, no quedan tensiones aclarables y (con IA) hay al menos 2 respuestas abiertas. Tope: 40.
 
 ## Perfil
 
-Por faceta: `score = tanh(Σ evidencia / 3)` en −1..1, `confianza = n / (n + 2)`. Se guarda cada evidencia (ítem, peso, respuesta) para poder explicar resultados. Una faceta tiene **tensión** si tiene evidencia ≥ +0,75 y ≤ −0,75: se interpreta como "depende del contexto", no como error.
+1. **Por reglas** (trazable): por faceta, `score = tanh(Σ evidencia / 3)` en −1..1 y `confianza = n / (n + 2)`. Cada evidencia guarda qué respuesta la aportó.
+2. **Por IA** (interpretativo): intereses principales y secundarios, combinaciones, pasatiempos, tensiones y qué falta explorar, cada punto con las respuestas que lo respaldan.
 
-## Motor adaptativo
+## Recomendaciones
 
-1. Apertura fija.
-2. Puntúa candidatos: necesidad de cobertura de su dimensión, profundización en los 3 intereses más altos, aclaración de tensiones, variedad (penaliza repetir dimensión o formato), contexto hacia el final, abiertas no consecutivas.
-3. Con IA: cada 7 respuestas (máx. 2) formula una pregunta abierta sobre los 2 intereses dominantes, sin mencionar carreras ni inducir.
-4. **Termina** cuando: ≥ 18 respuestas, todas las dimensiones alcanzaron su cobertura mínima, se profundizó en los 2 intereses principales, no quedan tensiones con ítem disponible para aclararlas y (con IA) hay ≥ 2 abiertas. Tope: 42.
+Ver `RECOMMENDATIONS.md`. Resumen: la IA elige y explica carreras **solo entre las del catálogo verificado**, con niveles cualitativos de afinidad.
 
-En simulaciones, perfiles distintos recorren entre ~25 y ~32 preguntas con caminos diferentes.
+## Principios que la IA debe respetar (en los prompts)
 
-## Afinidad
+- Hablar de tendencias, no de identidades. No encasillar.
+- Las contradicciones son pistas, no errores.
+- No inducir respuestas; opciones equilibradas.
+- No repetir ni parafrasear preguntas ya hechas.
+- No inventar información académica.
+- Recordar el alcance: exploración, no diagnóstico.
 
-- Personal: intereses, modos de trabajo, motivaciones, valores, estilo de vida.
-- Académica: habilidades percibidas y preferencias de estudio.
-- Combinada = 0,65 · personal + 0,35 · académica. Se informa en 4 niveles cualitativos (muy marcada, clara, posible, para explorar). **Nunca porcentajes.**
-- Descubrimiento: áreas fuera del top cuyo interés dominante no fue marcado ni aparece entre los intereses principales, pero que coinciden en ≥ 2 facetas de forma de trabajo o motivación.
-- Práctica: pendiente de catálogo; el contexto nunca descarta opciones.
+## Versionado
 
-## Para revisar con profesionales
+- `METHODOLOGY_VERSION` (hoy `0.2.0`) se guarda en cada evaluación.
+- Cada ítem del banco tiene `version`; las preguntas generadas viajan con su definición completa.
+- Cada prompt tiene `id` y `version`; cada evaluación registra modelo y versión de prompt de cada llamada.
 
-- Taxonomía de facetas y su relación con marcos existentes (p. ej. modelos de intereses tipo RIASEC), sin presentarlo como equivalente.
-- Redacción de ítems: sesgos de género y socioeconómicos, lectura para 15 años, deseabilidad social.
-- Pesos de ítems y perfiles de áreas (`study-fields.draft.ts`).
-- Reglas de cierre y umbrales.
-- Cómo comunicar resultados a menores.
-- Protocolo ante respuestas que sugieran malestar (hoy: aviso con líneas de ayuda).
+## Mejoras posibles a futuro (no bloquean el MVP)
+
+- Revisión por un profesional de orientación vocacional.
+- Ajustar pesos y perfiles de campos con datos del piloto (identificación con resultados, descubrimientos).
+- Revisar sesgos de género y socioeconómicos en ítems y recomendaciones con métricas por segmento.

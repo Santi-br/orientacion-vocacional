@@ -4,10 +4,16 @@
  * y nunca se guarda en nuestros servidores sin una cuenta y consentimiento.
  */
 import type { Onboarding, ResponseRecord } from "@/domain/methodology/types";
+import type { AITrace } from "@/domain/report/types";
 
 const KEY = "project.assessment.v1";
 
-export type SessionState = { onboarding: Onboarding; responses: ResponseRecord[]; finished?: boolean };
+export type SessionState = {
+  onboarding: Onboarding;
+  responses: ResponseRecord[];
+  aiTrace?: AITrace[]; // modelos y versiones de prompt usados (se adjuntan al informe)
+  finished?: boolean;
+};
 
 export function loadSession(): SessionState | null {
   try {
