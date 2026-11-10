@@ -7,6 +7,7 @@ import { Horizon } from "@/components/ui/horizon";
 import { Wordmark } from "@/components/ui/wordmark";
 import { AFFINITY, type ProfileTheme, type Recommendation, type Report } from "@/domain/report/types";
 import { clearSession, loadSession } from "@/features/assessment/session";
+import { requestReport } from "@/features/assessment/engine-client";
 
 const STAGES = [
   "Leyendo tus respuestas",
@@ -29,12 +30,7 @@ export function ReportView() {
     }
     const tick = setInterval(() => setStage((x) => Math.min(x + 1, STAGES.length - 1)), 2600);
     const minDelay = new Promise((r) => setTimeout(r, 2400));
-    fetch("/api/assessment/report", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ onboarding: s.onboarding, responses: s.responses, aiTrace: s.aiTrace ?? [] }),
-    })
-      .then((r) => (r.ok ? r.json() : Promise.reject()))
+    requestReport(s)
       .then(async (data: Report) => {
         await minDelay;
         setReport(data);

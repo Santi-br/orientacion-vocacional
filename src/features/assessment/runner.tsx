@@ -4,20 +4,13 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import type { Answer, Item, ResponseRecord } from "@/domain/methodology/types";
-import type { AITrace } from "@/domain/report/types";
+import { requestNext } from "./engine-client";
 import { CARE_RESOURCES } from "./care-resources";
 import { FlowShell } from "./flow-shell";
 import { QuestionView } from "./question-view";
 import { loadSession, saveSession, type SessionState } from "./session";
 
 type Progress = { overall: number; dimensions: { id: string; label: string; ratio: number }[] };
-type NextResponse = {
-  responses: ResponseRecord[];
-  step: { type: "item"; item: Item; reason: string } | { type: "done" };
-  progress: Progress;
-  wellbeing: boolean;
-  trace: AITrace[];
-};
 
 export function Runner() {
   const router = useRouter();
@@ -31,13 +24,7 @@ export function Runner() {
   const advance = useCallback(
     async (s: SessionState) => {
       try {
-        const res = await fetch("/api/assessment/next", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({ onboarding: s.onboarding, responses: s.responses }),
-        });
-        if (!res.ok) throw new Error(String(res.status));
-        const data = (await res.json()) as NextResponse;
+        const data = await requestNext(s);
         const next: SessionState = {
           ...s,
           responses: data.responses,

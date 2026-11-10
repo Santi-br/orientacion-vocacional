@@ -8,6 +8,7 @@ import { FACETS, INTEREST_FACETS, type FacetKey } from "@/domain/methodology/dim
 import type { Onboarding as OnboardingData } from "@/domain/methodology/types";
 import { ChoiceChip, FlowShell } from "./flow-shell";
 import { saveSession } from "./session";
+import { STATIC_MODE } from "./engine-client";
 
 const EDADES = [["15", "15"], ["16", "16"], ["17", "17"], ["18", "18"], ["otra", "Otra edad"]] as const;
 const ANIOS = [["3", "3.º"], ["4", "4.º"], ["5", "5.º"], ["6", "6.º"], ["egresado", "Ya terminé"], ["otro", "Otro"]] as const;
@@ -31,7 +32,7 @@ export function Onboarding() {
   const canNext = [Boolean(edad && anio), Boolean(zona), true, entiende][step];
 
   function start() {
-    saveSession({ onboarding: { edad: edad!, anio: anio!, zona: zona!, areasConocidas: areas, aceptaIA }, responses: [] });
+    saveSession({ onboarding: { edad: edad!, anio: anio!, zona: zona!, areasConocidas: areas, aceptaIA: STATIC_MODE ? false : aceptaIA }, responses: [] });
     router.push("/explorar/test");
   }
 
@@ -106,17 +107,24 @@ export function Onboarding() {
               <li>Si tenés menos de 18, te recomendamos contarle a un adulto de confianza que lo vas a hacer.</li>
             </ul>
 
+            {STATIC_MODE ? (
+              <p className="glass mt-7 rounded-[var(--radius-panel)] p-5 text-[14px] leading-relaxed text-[var(--text-muted)]">
+                Esta es una versión de demostración: funciona sin IA y todo se calcula en tu navegador. Nada sale de tu
+                dispositivo.
+              </p>
+            ) : (
             <label className="glass mt-7 flex cursor-pointer gap-4 rounded-[var(--radius-panel)] p-5">
-              <input type="checkbox" checked={aceptaIA} onChange={(e) => setAceptaIA(e.target.checked)} className="mt-1 h-5 w-5 shrink-0 accent-[#9bcbd4]" />
-              <span>
-                <span className="block text-[15.5px] font-semibold">Usar IA para analizar mis respuestas</span>
-                <span className="mt-1 block text-[14px] leading-relaxed text-[var(--text-muted)]">
-                  La IA adapta las preguntas a lo que vas contando y arma tus recomendaciones eligiendo solo entre carreras
-                  reales. Tus respuestas se envían a un servicio de IA (Groq) sin tu edad, tu zona ni nada que te identifique, solo para este
-                  análisis y nunca para publicidad. Si no lo activás, el test funciona igual con reglas fijas.
+                <input type="checkbox" checked={aceptaIA} onChange={(e) => setAceptaIA(e.target.checked)} className="mt-1 h-5 w-5 shrink-0 accent-[#9bcbd4]" />
+                <span>
+                  <span className="block text-[15.5px] font-semibold">Usar IA para analizar mis respuestas</span>
+                  <span className="mt-1 block text-[14px] leading-relaxed text-[var(--text-muted)]">
+                    La IA adapta las preguntas a lo que vas contando y arma tus recomendaciones eligiendo solo entre carreras
+                    reales. Tus respuestas se envían a un servicio de IA (Groq) sin tu edad, tu zona ni nada que te identifique, solo para este
+                    análisis y nunca para publicidad. Si no lo activás, el test funciona igual con reglas fijas.
+                  </span>
                 </span>
-              </span>
-            </label>
+              </label>
+            )}
 
             <label className="mt-3 flex cursor-pointer gap-4 rounded-[var(--radius-panel)] border border-white/12 p-5">
               <input type="checkbox" checked={entiende} onChange={(e) => setEntiende(e.target.checked)} className="mt-1 h-5 w-5 shrink-0 accent-[#9bcbd4]" />
