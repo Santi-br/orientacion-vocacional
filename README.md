@@ -36,3 +36,16 @@ npm run catalog:sql    # regenera supabase/seed/catalog.sql desde data/catalog
 - [Diseño](docs/DESIGN.md)
 - [Roadmap, hitos y riesgos](docs/ROADMAP.md)
 - [Decisiones](docs/DECISIONS.md)
+
+## Demo pública (GitHub Pages)
+
+https://santi-br.github.io/orientacion-vocacional/
+
+Versión estática: el motor de reglas corre en el navegador, **sin IA** y sin servidor. Para actualizarla:
+
+```bash
+PAGES_BASE_PATH=/orientacion-vocacional npm run build:pages   # genera ./out
+# publicar ./out en la rama gh-pages
+```
+
+La versión con IA necesita servidor (por ejemplo Vercel, plan gratis) y la variable `AI_API_KEY`.
